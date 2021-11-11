@@ -1,8 +1,31 @@
 namespace JogoTurnBased
 {
+    public class PlayerStatsName
+    {
+        public string PlayerName { get; private set; }
+        public void GetPlayerName(string name)
+        {
+            PlayerName = name;
+        }
+        public string ReturnPlayerName()
+        {
+            return PlayerName;
+        }
+    }
+    public class ActionClass
+    {
+        private string Action { get; set; }
+        public void GetAction(string action)
+        {
+            Action = action;
+        }
+        public string ReturnAction()
+        {
+            return Action;
+        }
+    }
     public class PlayerStats
     {
-        public string PlayerName {get; set;}
         public int PlayerHP {get; set;} = 100;
         public int PlayerDamage {get; private set;} = 5;
         public int PlayerHeal {get; private set;} = 10;

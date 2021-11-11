@@ -21,6 +21,7 @@ namespace JogoTurnBased
         public void cmmdsInCombat()
         {
             Console.WriteLine("Digite atacar para dar dano no monstro.");
+            Console.WriteLine("Digite esperar para pular o turno.");
             Console.WriteLine("Digite curar para si curar.");
             Console.WriteLine("Digite quit para sair do jogo.");
         }

@@ -9,9 +9,9 @@ namespace JogoTurnBased
     public class Player
     {
         Random RandomNumber = new Random();
-        public string Action {get; set;}
-        public string InsertPName(string name)
+        public string InsertPName()
         {
+            string name;
             Console.Write("Insira o seu nome: ");
             name = Console.ReadLine();
             return name;

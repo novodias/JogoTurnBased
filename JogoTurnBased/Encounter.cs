@@ -2,8 +2,9 @@ using System;
 
 namespace JogoTurnBased
 {
-    partial class Encounter : Combat
+    partial class Encounter : CombatType
     {
+
         MonsterData MonsterInfo = new();
         private void MonsterType(string monster)
         {
@@ -51,7 +52,7 @@ namespace JogoTurnBased
             MonstersHP = (int)MonsterInfo.InfoMonsterArray("hp");
             EncounterMonster(PlayerHPCheck);
         }
-        private void EncounterMonster(int PlayerHPCheck)
+        public void EncounterMonster(int PlayerHPCheck)
         {
             Console.WriteLine("Seu HP: " + PlayerHPCheck);
             Console.WriteLine("HP do " + (string)MonsterInfo.InfoMonsterArray("name") + ": " + MonstersHP);

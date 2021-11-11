@@ -1,93 +1,96 @@
-using System;
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
 
 namespace JogoTurnBased
 {
     public class Combat
     {
-        public int PlayerHP {get; set;}
-        public int MonstersHP {get; set;}
-        public int FinalHP {get; private set;}
-        private int CriticalDMG {get; set;}
+        private string _name { get; set; } 
+        /// <summary>
+        /// status = 0 (BATALHA NOVA), status = 1 (CONTINUAR BATALHA), status != 1,0 (MORTE)
+        /// </summary>
+        int status { get; set; } = 0;
+        public void CombatStart(string name)
+        {
+            PlayerStats playerStats = new();
+            Encounter statusEnc = new();
 
-        Random RandomMiss = new Random();
-        public int HPCheck(int HP, int Attack)
-        {
-            FinalHP = HP - Attack;
-            return FinalHP;
-        }
+            _name = name;
 
-        // ATAQUE
-        public int Attack(int Attack, string infoAttacker)
-        {
-            CriticalDMG = RandomMiss.Next(1, Attack + 1);
-            if(CriticalDMG == Attack)
-            {
-                int DamageInfo = CriticalDMG * 2;
-                Console.WriteLine(infoAttacker + " acertou um dano crítico: " + DamageInfo);
-                return DamageInfo;
-            }
-            else 
-            {
-                int DamageInfo = RandomMiss.Next(0, Attack + 1);
-                Console.WriteLine(infoAttacker + " deu: " + DamageInfo);
-                return DamageInfo;
-            }
-        }
+            statusEnc.FinalEncounterMonster(0);
 
-        public int Dodge(int Attack, int infoDodge, string infoAttacker)
-        {
-            int ChanceToDodge = RandomMiss.Next(1, 101);
-            if(ChanceToDodge <= infoDodge)
+            NewTurn:
+            if (this.status == 0)
             {
-                Attack = 0;
-                Console.WriteLine(infoAttacker + " desviou do ataque!");
-                return Attack;
+                statusEnc.PlayerHPCheck = playerStats.PlayerHP;
             }
-            return Attack;
-        }
+            else if (this.status == 1)
+            {
+                statusEnc.FinalEncounterMonster(1);
+            }
+            else goto EndBattle;
 
-        // HEAL
-        public int Heal(int HP, int Heal)
-        {
-            int MissRnd = RandomMiss.Next(1,5);
-            if (MissRnd >= 3)
-            {
-                Heal = 0;
-            }
-            FinalHP = HP + Heal;
-            return FinalHP;
-        }
+            ActionClass action = new();
+            string act = Console.ReadLine();
+            action.GetAction(act);
 
-        // CHECAR HP DO PLAYER E MONSTRO
-        private bool CheckPlayer()
-        {
-            if (PlayerHP <= 0)
+            PlayerAct:
+            switch (action.ReturnAction())
             {
-                return true;
-            }
-            return false;
-        }
-        private bool CheckMonster()
-        {
-            if (MonstersHP <= 0)
-            {
-                return true;
-            }
-            return false;
-        }
+                case "atacar":
+                    statusEnc.MoveAttack(playerStats.PlayerDamage, _name);
+                    statusEnc.MonsterAttack(statusEnc.PlayerHPCheck, playerStats.PlayerDodge, _name);
+                    NewRound(statusEnc.DeathStatus());
+                    goto NewTurn;
 
-        // CHECAR SE ALGUM DOS DOIS ESTA MORTO
-        public int CheckDeath()
+                case "curar":
+                    statusEnc.MoveHeal(statusEnc.PlayerHPCheck, playerStats.PlayerHeal);
+                    statusEnc.MonsterAttack(statusEnc.PlayerHPCheck, playerStats.PlayerDodge, _name);
+                    NewRound(statusEnc.DeathStatus());
+                    goto NewTurn;
+
+                case "esperar":
+                    Console.WriteLine("Você começou a fazer um formato de T com o corpo");
+                    statusEnc.MonsterAttack(statusEnc.PlayerHPCheck, playerStats.PlayerDodge, _name);
+                    NewRound(statusEnc.DeathStatus());
+                    goto NewTurn;
+
+                case "quit":
+                    Environment.Exit(1);
+                    break;
+
+                default:
+                    Console.WriteLine("Comando inválido, tente novamente!");
+                    goto PlayerAct;
+            }
+            EndBattle:
+            Console.WriteLine("Batalha finalizada.");
+        }
+        public void NewRound(int status)
         {
-            if(CheckPlayer() == true && CheckMonster() == false)
+            // 1 = PLAYER DEATH // 2 = MONSTER DEATH // 3 = CONTINUAR
+            switch (status)
             {
-                return 1;
+                case 1:
+                    Console.WriteLine("Deseja tentar novamente? (y/n)");
+                    char TryAgain = Console.ReadKey().KeyChar;
+                    if (TryAgain == 'n')
+                    {
+                        Environment.Exit(1);
+                    }
+                    break;
+
+                case 2:
+                    this.status = -1;
+                    break;
+
+                case 3:
+                    this.status = 1;
+                    break;
             }
-            else if (CheckMonster() == true && CheckPlayer() == false)
-            {
-                return 2;
-            }
-            return 3;
         }
     }
 }
