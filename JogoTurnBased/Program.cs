@@ -15,6 +15,7 @@ namespace JogoTurnBased
             Start:
             PlayerStatsName playerName = new();
             Player playerClient = new();
+            PlayerStats playerStats = new();
 
             playerName.GetPlayerName(playerClient.InsertPName());
 
@@ -30,7 +31,9 @@ namespace JogoTurnBased
             Encontrar:
             playerClient.FindMonsters();
             Combat CombatNow = new();
-            CombatNow.CombatStart(playerName.ReturnPlayerName());
+            CombatNow.GetStatsBeforeCombat(playerName.ReturnPlayerName(), playerStats.PlayerHP, playerStats.PlayerDamage, playerStats.PlayerDodge, playerStats.PlayerHeal, playerStats.PlayerEXP, playerStats.PlayerEXPtoLevelUP);
+            CombatNow.CombatStart();
+            CombatNow.ReturnStatsAfterCombat(playerStats.PlayerHP, playerStats.PlayerDamage, playerStats.PlayerDodge, playerStats.PlayerHeal, playerStats.PlayerEXP);
         }
     }
 }

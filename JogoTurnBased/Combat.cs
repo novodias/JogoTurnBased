@@ -6,26 +6,47 @@ using System.Threading.Tasks;
 
 namespace JogoTurnBased
 {
-    public class Combat
+    public class Combat : Experience
     {
         private string _name { get; set; } 
+        private int _hp { get; set; }
+        private int _damage { get; set; }
+        private int _dodge { get; set; }
+        private int _heal { get; set; }
+        private int _exp { get; set; }
+        private int _expToLevelUP { get; set; }
+        public void GetStatsBeforeCombat(string PlayerName, int PlayerHP, int PlayerDamage, int PlayerDodge, int PlayerHeal, int PlayerEXP, int PlayerEXPmin)
+        {
+            _name = PlayerName;
+            _hp = PlayerHP;
+            _damage = PlayerDamage;
+            _dodge = PlayerDodge;
+            _heal = PlayerHeal;
+            _exp = PlayerEXP;
+            _expToLevelUP = PlayerEXPmin;
+        }
+        public void ReturnStatsAfterCombat(int PlayerHP, int PlayerDamage, int PlayerDodge, int PlayerHeal, int PlayerEXP)
+        {
+            PlayerHP = _hp;
+            PlayerDamage = _damage;
+            PlayerDodge = _dodge;
+            PlayerHeal = _heal;
+            PlayerEXP = _exp;
+        }
         /// <summary>
         /// status = 0 (BATALHA NOVA), status = 1 (CONTINUAR BATALHA), status != 1,0 (MORTE)
         /// </summary>
         int status { get; set; } = 0;
-        public void CombatStart(string name)
+        public void CombatStart()
         {
-            PlayerStats playerStats = new();
             Encounter statusEnc = new();
-
-            _name = name;
 
             statusEnc.FinalEncounterMonster(0);
 
             NewTurn:
             if (this.status == 0)
             {
-                statusEnc.PlayerHPCheck = playerStats.PlayerHP;
+                statusEnc.PlayerHPCheck = _hp;
             }
             else if (this.status == 1)
             {
@@ -34,27 +55,28 @@ namespace JogoTurnBased
             else goto EndBattle;
 
             ActionClass action = new();
+
+            PlayerAct:
             string act = Console.ReadLine();
             action.GetAction(act);
 
-            PlayerAct:
             switch (action.ReturnAction())
             {
                 case "atacar":
-                    statusEnc.MoveAttack(playerStats.PlayerDamage, _name);
-                    statusEnc.MonsterAttack(statusEnc.PlayerHPCheck, playerStats.PlayerDodge, _name);
+                    statusEnc.MoveAttack(_damage, _name);
+                    statusEnc.MonsterAttack(statusEnc.PlayerHPCheck, _dodge, _name);
                     NewRound(statusEnc.DeathStatus());
                     goto NewTurn;
 
                 case "curar":
-                    statusEnc.MoveHeal(statusEnc.PlayerHPCheck, playerStats.PlayerHeal);
-                    statusEnc.MonsterAttack(statusEnc.PlayerHPCheck, playerStats.PlayerDodge, _name);
+                    statusEnc.MoveHeal(_heal);
+                    statusEnc.MonsterAttack(statusEnc.PlayerHPCheck, _dodge, _name);
                     NewRound(statusEnc.DeathStatus());
                     goto NewTurn;
 
                 case "esperar":
                     Console.WriteLine("Você começou a fazer um formato de T com o corpo");
-                    statusEnc.MonsterAttack(statusEnc.PlayerHPCheck, playerStats.PlayerDodge, _name);
+                    statusEnc.MonsterAttack(statusEnc.PlayerHPCheck, _dodge, _name);
                     NewRound(statusEnc.DeathStatus());
                     goto NewTurn;
 
@@ -68,10 +90,13 @@ namespace JogoTurnBased
             }
             EndBattle:
             Console.WriteLine("Batalha finalizada.");
+            _exp = GainEXP(_exp, statusEnc.ReturnMonsterExp());
+            LevelUpPoints(_hp, _damage, _dodge, _heal, _exp, _expToLevelUP);
+            Console.WriteLine($"Seu experiência no total: {_exp}");
         }
         public void NewRound(int status)
         {
-            // 1 = PLAYER DEATH // 2 = MONSTER DEATH // 3 = CONTINUAR
+            // case 1 = PLAYER DEATH // case 2 = MONSTER DEATH // case 3 = CONTINUAR
             switch (status)
             {
                 case 1:

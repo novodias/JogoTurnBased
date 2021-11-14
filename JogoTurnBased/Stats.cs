@@ -30,6 +30,9 @@ namespace JogoTurnBased
         public int PlayerDamage {get; private set;} = 5;
         public int PlayerHeal {get; private set;} = 10;
         public int PlayerDodge {get; private set;} = 10;
+        public int PlayerEXP { get; set; } = 0;
+        public int PlayerEXPtoLevelUP { get; set; } = 10;
+
     }
 
     partial class Encounter

@@ -2,33 +2,25 @@ using System;
 
 namespace JogoTurnBased
 {
+
     partial class Encounter : CombatType
     {
-
         MonsterData MonsterInfo = new();
-        private void MonsterType(string monster)
-        {
-            switch (monster)
-            {
-                case "troll":
-                    MonsterInfo.TrollMonster();
-                    break;
-                case "slime":
-                    MonsterInfo.SlimeMonster();
-                    break;
-            }
-        }
         private void SelectMonster()
         {
             Random RandomMonster = new Random();
             if (RandomMonster.Next(1, 11) <= 3)
             {
-                MonsterType("troll");
+                MonsterInfo.TrollMonster();
             }
             else
             {
-                MonsterType("slime");
+                MonsterInfo.SlimeMonster();
             }
+        }
+        public int ReturnMonsterExp()
+        {
+            return (int)MonsterInfo.InfoMonsterArray("exp");
         }
         Cmmds commands = new Cmmds();
 
@@ -75,16 +67,14 @@ namespace JogoTurnBased
         }
         public int MoveAttack(int PlayerDamageStats, string PlayerName)
         {
-            int bruh;
             int damage = Dodge(Attack(PlayerDamageStats, PlayerName), (int)MonsterInfo.InfoMonsterArray("dodge"), (string)MonsterInfo.InfoMonsterArray("name"));
-            bruh = HPCheck(MonstersHP, damage);
-            return MonstersHP = bruh;
+            return MonstersHP = HPCheck(MonstersHP, damage);
         }
-        public int MoveHeal(int PlayerHealth, int PlayerHealStats)
+        public int MoveHeal(int PlayerHealStats)
         {
-            int heal = Heal(PlayerHealth, PlayerHealStats);
+            int heal = Heal(PlayerHealStats);
             Console.WriteLine("Você curou: " + heal);
-            return PlayerHPCheck = PlayerHP = heal;
+            return PlayerHPCheck = PlayerHP + heal;
         }
         public int MonsterAttack(int PlayerHealth, int PlayerDodge, string PlayerName)
         {

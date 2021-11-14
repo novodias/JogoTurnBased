@@ -60,15 +60,14 @@ namespace JogoTurnBased
         /// <param name="HP"></param>
         /// <param name="Heal"></param>
         /// <returns></returns>
-        public int Heal(int HP, int Heal)
+        public int Heal(int HealStat)
         {
-            int MissRnd = RandomMiss.Next(1,5);
-            if (MissRnd >= 3)
+            int MissRnd = RandomMiss.Next(0, HealStat + 1);
+            if (MissRnd <= 3)
             {
-                Heal = 0;
+                return 0;
             }
-            FinalHP = HP + Heal;
-            return FinalHP;
+            return MissRnd;
         }
 
         // CHECAR HP DO PLAYER E MONSTRO
