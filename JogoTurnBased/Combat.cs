@@ -69,7 +69,7 @@ namespace JogoTurnBased
                     goto NewTurn;
 
                 case "curar":
-                    statusEnc.MoveHeal(_heal);
+                    statusEnc.PlayerHPCheck = MaxHeal(statusEnc.MoveHeal(_heal), statusEnc.PlayerHPCheck, _hp);
                     statusEnc.MonsterAttack(statusEnc.PlayerHPCheck, _dodge, _name);
                     NewRound(statusEnc.DeathStatus());
                     goto NewTurn;
@@ -115,6 +115,19 @@ namespace JogoTurnBased
                 case 3:
                     this.status = 1;
                     break;
+            }
+        }
+        public int MaxHeal(int heal, int hpcheck, int maxhp)
+        {
+            int cura = heal + hpcheck;
+            if (cura > maxhp)
+            {
+                int HPcure = maxhp - hpcheck;
+                return hpcheck + HPcure;
+            }
+            else
+            {
+                return heal + hpcheck;
             }
         }
     }

@@ -39,7 +39,7 @@ namespace JogoTurnBased
         {
             Random randomStat = new();
             int final;
-            TryAgain:
+            NewTry:
             switch (stats)
             {
                 case "HP":
@@ -72,7 +72,7 @@ namespace JogoTurnBased
 
                 default:
                     Console.WriteLine("Digite corretamente o status!");
-                    goto TryAgain;
+                    goto NewTry; //loop
             }
         }
         /// <summary>

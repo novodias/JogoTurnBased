@@ -74,7 +74,7 @@ namespace JogoTurnBased
         {
             int heal = Heal(PlayerHealStats);
             Console.WriteLine("Você curou: " + heal);
-            return PlayerHPCheck = PlayerHP + heal;
+            return heal;
         }
         public int MonsterAttack(int PlayerHealth, int PlayerDodge, string PlayerName)
         {
