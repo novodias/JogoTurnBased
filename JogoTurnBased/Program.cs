@@ -37,10 +37,14 @@ namespace JogoTurnBased
             CombatNow.CombatStart();
             playerStats = CombatNow.ReturnStatsAfterCombat();
             Console.WriteLine($"PROGRAM HP: {playerStats[0]}");
-            //if ( playerStats.PlayerHP > 0 )
-            //{
-            //    goto Encontrar;
-            //}
+            if (playerStats[0] > 0)
+            {
+                goto Encontrar;
+            }
+            else 
+            { 
+                goto Start;
+            }
         }
     }
 }

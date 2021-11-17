@@ -34,7 +34,7 @@ namespace JogoTurnBased
         public void CombatStart()
         {
             Encounter statusEnc = new();
-
+            this.status = 0;
             NewTurn:
             if (this.status == 0)
             {
@@ -82,10 +82,11 @@ namespace JogoTurnBased
                     goto PlayerAct;
             }
             EndBattle:
+            _player[0] = statusEnc.PlayerHPCheck;
             Console.WriteLine("Batalha finalizada.");
-            _player[4] = GainEXP(_player[4], statusEnc.ReturnMonsterExp());
-            LevelUpPoints(_player[0], _player[1], _player[2], _player[3], _player[4], _player[5]);
-            Console.WriteLine($"Seu experiência no total: {_player[4]}");
+            //_player[4] = GainEXP(_player[4], statusEnc.ReturnMonsterExp());
+            //LevelUpPoints(_player[0], _player[1], _player[2], _player[3], _player[4], _player[5]);
+            //Console.WriteLine($"Seu experiência no total: {_player[4]}");
         }
         public void NewRound(int status)
         {
