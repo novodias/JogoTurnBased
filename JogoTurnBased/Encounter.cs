@@ -9,13 +9,18 @@ namespace JogoTurnBased
         private void SelectMonster()
         {
             Random RandomMonster = new Random();
-            if (RandomMonster.Next(1, 11) <= 3)
+            int RndMonsterSelect = RandomMonster.Next(0, 11);
+            if (RndMonsterSelect == 1)
             {
                 MonsterInfo.TrollMonster();
             }
-            else
+            else if(RndMonsterSelect <= 7 && RndMonsterSelect != 1)
             {
                 MonsterInfo.SlimeMonster();
+            }
+            else
+            {
+                MonsterInfo.GoblinMonster();
             }
         }
         public int ReturnMonsterExp()
