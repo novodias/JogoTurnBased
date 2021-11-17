@@ -72,7 +72,8 @@ namespace JogoTurnBased
 
                 default:
                     Console.WriteLine("Digite corretamente o status!");
-                    return LevelUpStats(stats, HP, Attack, Dodge, Heal); // talvez não funcione
+                    stats = Console.ReadLine();
+                    goto NewTry; // talvez não funcione
             }
         }
         /// <summary>
