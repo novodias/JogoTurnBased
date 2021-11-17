@@ -48,12 +48,11 @@ namespace JogoTurnBased
         {
             Encounter statusEnc = new();
 
-            statusEnc.FinalEncounterMonster(0);
-
             NewTurn:
             if (this.status == 0)
             {
                 statusEnc.PlayerHPCheck = _player[0];
+                statusEnc.FinalEncounterMonster(0);
             }
             else if (this.status == 1)
             {
