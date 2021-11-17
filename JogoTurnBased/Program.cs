@@ -15,7 +15,7 @@ namespace JogoTurnBased
             Start:
             PlayerStatsName playerName = new();
             Player playerClient = new();
-            PlayerStats playerStats = new();
+            PlayerStats player = new();
 
             playerName.GetPlayerName(playerClient.InsertPName());
 
@@ -27,13 +27,20 @@ namespace JogoTurnBased
             action.GetAction(commands.InsertText(""));
 
             Message.MoveMessage(playerName.ReturnPlayerName());
+            Combat CombatNow = new();
+
+            int[] playerStats = new int[6] { player.HP, player.Damage, player.Dodge, player.Heal, player.EXP, player.EXPtoLevelUP};
 
             Encontrar:
             playerClient.FindMonsters();
-            Combat CombatNow = new();
-            CombatNow.GetStatsBeforeCombat(playerName.ReturnPlayerName(), playerStats.PlayerHP, playerStats.PlayerDamage, playerStats.PlayerDodge, playerStats.PlayerHeal, playerStats.PlayerEXP, playerStats.PlayerEXPtoLevelUP);
+            CombatNow.GetStatsBeforeCombat(playerName.ReturnPlayerName(), playerStats);
             CombatNow.CombatStart();
-            CombatNow.ReturnStatsAfterCombat(playerStats.PlayerHP, playerStats.PlayerDamage, playerStats.PlayerDodge, playerStats.PlayerHeal, playerStats.PlayerEXP);
+            playerStats = CombatNow.ReturnStatsAfterCombat();
+            Console.WriteLine($"PROGRAM HP: {playerStats[0]}");
+            //if ( playerStats.PlayerHP > 0 )
+            //{
+            //    goto Encontrar;
+            //}
         }
     }
 }

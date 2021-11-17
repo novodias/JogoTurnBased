@@ -46,33 +46,33 @@ namespace JogoTurnBased
                 case "Hp":
                 case "hp":
                     final = HP + randomStat.Next(0, 16);
-                    Console.WriteLine($"Você upou HP, e aumentou {final}");
+                    Console.WriteLine($"Você upou HP, e aumentou para {final}");
                     return final;
 
                 case "DANO":
                 case "Dano":
                 case "dano":
                     final = Attack + randomStat.Next(0, 6);
-                    Console.WriteLine($"Você upou Dano, e aumentou {final}");
+                    Console.WriteLine($"Você upou Dano, e aumentou para {final}");
                     return final;
 
                 case "ESQUIVA":
                 case "Esquiva":
                 case "esquiva":
                     final = Dodge + randomStat.Next(0, 6);
-                    Console.WriteLine($"Você upou Esquiva, e aumentou {final}");
+                    Console.WriteLine($"Você upou Esquiva, e aumentou para {final}");
                     return final;
 
                 case "CURA":
                 case "Cura":
                 case "cura":
                     final = Heal + randomStat.Next(0, 6);
-                    Console.WriteLine($"Você upou Cura, e aumentou {final}");
+                    Console.WriteLine($"Você upou Cura, e aumentou para {final}");
                     return final;
 
                 default:
                     Console.WriteLine("Digite corretamente o status!");
-                    goto NewTry; //loop
+                    return LevelUpStats(stats, HP, Attack, Dodge, Heal); // talvez não funcione
             }
         }
         /// <summary>
@@ -88,10 +88,10 @@ namespace JogoTurnBased
             if (CheckLevelUp(PlayerExp, PlayerLevelUpMin) == true)
             {
                 Console.WriteLine($"Você upou de nível, e tem agora a quantidade de pontos: {Points}");
+                Points--;
                 Console.WriteLine($"Escolha um dos status para upar: HP: {HP}, Dano: {Attack}, Esquiva: {Dodge} e Cura: {Heal}.");
                 string ChooseStats = Console.ReadLine();
                 LevelUpStats(ChooseStats, HP, Attack, Dodge, Heal);
-                Points--;
             }
         }
     }

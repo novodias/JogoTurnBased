@@ -8,30 +8,37 @@ namespace JogoTurnBased
 {
     public class Combat : Experience
     {
-        private string _name { get; set; } 
-        private int _hp { get; set; }
-        private int _damage { get; set; }
-        private int _dodge { get; set; }
-        private int _heal { get; set; }
-        private int _exp { get; set; }
-        private int _expToLevelUP { get; set; }
-        public void GetStatsBeforeCombat(string PlayerName, int PlayerHP, int PlayerDamage, int PlayerDodge, int PlayerHeal, int PlayerEXP, int PlayerEXPmin)
+        private string _name { get; set; }
+        private int[] _player { get; set; }
+        // private int _hp { get; set; }
+        // private int _damage { get; set; }
+        // private int _dodge { get; set; }
+        // private int _heal { get; set; }
+        // private int _exp { get; set; }
+        // private int _expToLevelUP { get; set; }
+
+        public void GetStatsBeforeCombat(string PlayerName, int[] PlayerStats)
         {
             _name = PlayerName;
-            _hp = PlayerHP;
-            _damage = PlayerDamage;
-            _dodge = PlayerDodge;
-            _heal = PlayerHeal;
-            _exp = PlayerEXP;
-            _expToLevelUP = PlayerEXPmin;
+            _player = PlayerStats;
+
+            // TESTES
+            //_player = new int[] { hp, damage, dodge, heal, exp, exptolevelup };
+            //Console.Write("Stats Array: ");
+            //foreach (var item in _player)
+            //{
+            //    Console.Write("{0} ", item);
+            //}
+            //Console.WriteLine($"\nTESTE HP n2: {_player[0]}");
+            //Console.WriteLine($"\nTESTE DANO n2: {_player[1]}");
+            //Console.WriteLine($"\nTESTE DODGE n2: {_player[2]}");
+            //Console.WriteLine($"\nTESTE HEAL n2: {_player[3]}");
+            //Console.WriteLine($"\nTESTE EXP n2: {_player[4]}");
+            //Console.WriteLine($"\nTESTE EXP PRA UPAR n2: {_player[5]}");
         }
-        public void ReturnStatsAfterCombat(int PlayerHP, int PlayerDamage, int PlayerDodge, int PlayerHeal, int PlayerEXP)
-        {
-            PlayerHP = _hp;
-            PlayerDamage = _damage;
-            PlayerDodge = _dodge;
-            PlayerHeal = _heal;
-            PlayerEXP = _exp;
+        public int[] ReturnStatsAfterCombat()
+        { 
+            return _player;
         }
         /// <summary>
         /// status = 0 (BATALHA NOVA), status = 1 (CONTINUAR BATALHA), status != 1,0 (MORTE)
@@ -46,7 +53,7 @@ namespace JogoTurnBased
             NewTurn:
             if (this.status == 0)
             {
-                statusEnc.PlayerHPCheck = _hp;
+                statusEnc.PlayerHPCheck = _player[0];
             }
             else if (this.status == 1)
             {
@@ -63,20 +70,20 @@ namespace JogoTurnBased
             switch (action.ReturnAction())
             {
                 case "atacar":
-                    statusEnc.MoveAttack(_damage, _name);
-                    statusEnc.MonsterAttack(statusEnc.PlayerHPCheck, _dodge, _name);
+                    statusEnc.MoveAttack(_player[1], _name);
+                    statusEnc.MonsterAttack(statusEnc.PlayerHPCheck, _player[2], _name);
                     NewRound(statusEnc.DeathStatus());
                     goto NewTurn;
 
                 case "curar":
-                    statusEnc.PlayerHPCheck = MaxHeal(statusEnc.MoveHeal(_heal), statusEnc.PlayerHPCheck, _hp);
-                    statusEnc.MonsterAttack(statusEnc.PlayerHPCheck, _dodge, _name);
+                    statusEnc.PlayerHPCheck = MaxHeal(statusEnc.MoveHeal(_player[3]), statusEnc.PlayerHPCheck, _player[0]);
+                    statusEnc.MonsterAttack(statusEnc.PlayerHPCheck, _player[2], _name);
                     NewRound(statusEnc.DeathStatus());
                     goto NewTurn;
 
                 case "esperar":
                     Console.WriteLine("Você começou a fazer um formato de T com o corpo");
-                    statusEnc.MonsterAttack(statusEnc.PlayerHPCheck, _dodge, _name);
+                    statusEnc.MonsterAttack(statusEnc.PlayerHPCheck, _player[2], _name);
                     NewRound(statusEnc.DeathStatus());
                     goto NewTurn;
 
@@ -90,9 +97,9 @@ namespace JogoTurnBased
             }
             EndBattle:
             Console.WriteLine("Batalha finalizada.");
-            _exp = GainEXP(_exp, statusEnc.ReturnMonsterExp());
-            LevelUpPoints(_hp, _damage, _dodge, _heal, _exp, _expToLevelUP);
-            Console.WriteLine($"Seu experiência no total: {_exp}");
+            _player[4] = GainEXP(_player[4], statusEnc.ReturnMonsterExp());
+            LevelUpPoints(_player[0], _player[1], _player[2], _player[3], _player[4], _player[5]);
+            Console.WriteLine($"Seu experiência no total: {_player[4]}");
         }
         public void NewRound(int status)
         {

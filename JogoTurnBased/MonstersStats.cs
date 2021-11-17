@@ -31,7 +31,7 @@ namespace JogoTurnBased
             HP = 15;
             Damage = 3;
             Dodge = 5;
-            EXP = 10; // temporario
+            EXP = 2; // temporario
         }
         public void TrollMonster()
         {
@@ -39,7 +39,7 @@ namespace JogoTurnBased
             HP = 35;
             Damage = 7;
             Dodge = 2;
-            EXP = 10; // temporario
+            EXP = 5; // temporario
         }
     }
 
