@@ -10,31 +10,11 @@ namespace JogoTurnBased
     {
         private string _name { get; set; }
         private int[] _player { get; set; }
-        // private int _hp { get; set; }
-        // private int _damage { get; set; }
-        // private int _dodge { get; set; }
-        // private int _heal { get; set; }
-        // private int _exp { get; set; }
-        // private int _expToLevelUP { get; set; }
 
         public void GetStatsBeforeCombat(string PlayerName, int[] PlayerStats)
         {
             _name = PlayerName;
             _player = PlayerStats;
-
-            // TESTES
-            //_player = new int[] { hp, damage, dodge, heal, exp, exptolevelup };
-            //Console.Write("Stats Array: ");
-            //foreach (var item in _player)
-            //{
-            //    Console.Write("{0} ", item);
-            //}
-            //Console.WriteLine($"\nTESTE HP n2: {_player[0]}");
-            //Console.WriteLine($"\nTESTE DANO n2: {_player[1]}");
-            //Console.WriteLine($"\nTESTE DODGE n2: {_player[2]}");
-            //Console.WriteLine($"\nTESTE HEAL n2: {_player[3]}");
-            //Console.WriteLine($"\nTESTE EXP n2: {_player[4]}");
-            //Console.WriteLine($"\nTESTE EXP PRA UPAR n2: {_player[5]}");
         }
         public int[] ReturnStatsAfterCombat()
         { 
