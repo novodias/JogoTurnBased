@@ -11,6 +11,13 @@ namespace JogoTurnBased
         private string _name { get; set; }
         private int[] _player { get; set; }
 
+        //_player[0] = hp
+        //_player[1] = damage
+        //_player[2] = dodge
+        //_player[3] = heal
+        //_player[4] = exp
+        //_player[5] = exptolevelup
+
         public void GetStatsBeforeCombat(string PlayerName, int[] PlayerStats)
         {
             _name = PlayerName;
