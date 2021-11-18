@@ -11,13 +11,13 @@ namespace JogoTurnBased
         // sem uso no momento.
         string MessageDungeonFound = "Você encontrou uma dungeon!";
         string MessageDungeonExplore = "Explorando a dungeon...";
-        public void FoundDungeon()
+        public void FoundDungeon(int exp)
         {
             Console.WriteLine(MessageDungeonFound);
-            ExploreDungeon();
+            ExploreDungeon(exp);
         }
 
-        private int ExploreDungeon()
+        private int ExploreDungeon(int exp)
         {
             Console.WriteLine(MessageDungeonExplore);
             Random random = new();
@@ -25,7 +25,7 @@ namespace JogoTurnBased
             if ( RandomFind >= 1 && RandomFind <= 50 )
             {
                 // Combate
-                return 0; // TODO
+                return exp; // TODO
             }
             else if ( RandomFind > 50 && RandomFind <= 75 )
             {
@@ -34,7 +34,7 @@ namespace JogoTurnBased
             else
             {
                 Console.WriteLine("Você encontrou nada.");
-                return ExploreDungeon();
+                return ExploreDungeon(exp);
             }
         }
 
