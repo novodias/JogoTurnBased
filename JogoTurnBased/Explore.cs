@@ -42,21 +42,31 @@ namespace JogoTurnBased
         {
             Random randomExp = new();
             int ExpReturn = randomExp.Next(0, 11);
-            if ( ExpReturn >= 1 && ExpReturn <= 5 )
+            return ItemsReturn(ExpReturn);
+        }
+
+        private int ItemsReturn(int randomExp)
+        {
+            int exp;
+
+            void BigChungus() { exp = 2;    Console.WriteLine("Você encontrou um big chungus! e ganhou +2 de exp.");         }
+            void Thanos() {     exp = 5;    Console.WriteLine("Você encontrou o Thanos em T pose! e ganhou +5 de exp.");     }
+            void Amogus() {     exp = 10;   Console.WriteLine("Você encontrou sus amogus dourado! e ganhou +10 de exp.");    }
+
+            if( randomExp >= 1 && randomExp <= 5 )
             {
-                Console.WriteLine("Você encontrou um big chungus! e ganhou +2 de exp.");
-                return 2;
+                BigChungus(); // retorna 2
             }
-            else if (ExpReturn > 5 && ExpReturn < 10)
+            else if ( randomExp > 5 && randomExp < 10 )
             {
-                Console.WriteLine("Você encontrou o Thanos em T pose! e ganhou +5 de exp.");
-                return 5;
+                Thanos(); // retorna 5
             }
             else
             {
-                Console.WriteLine($"Você encontrou sus amogus dourado! e ganhou +10 de exp.");
-                return 10;
+                Amogus(); // retorna 10
             }
+
+            return exp;
         }
     }
 }
