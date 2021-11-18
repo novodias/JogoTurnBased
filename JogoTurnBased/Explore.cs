@@ -48,10 +48,11 @@ namespace JogoTurnBased
         private int ItemsReturn(int randomExp)
         {
             int exp;
+            string item;
 
-            void BigChungus() { exp = 2;    Console.WriteLine("Você encontrou um big chungus! e ganhou +2 de exp.");         }
-            void Thanos() {     exp = 5;    Console.WriteLine("Você encontrou o Thanos em T pose! e ganhou +5 de exp.");     }
-            void Amogus() {     exp = 10;   Console.WriteLine("Você encontrou sus amogus dourado! e ganhou +10 de exp.");    }
+            void BigChungus() { exp = 2;    item = "Big Chungus";           }
+            void Thanos() {     exp = 5;    item = "Thanos em T pose";      }
+            void Amogus() {     exp = 10;   item = "Sus Amogus dourado";    }
 
             if( randomExp >= 1 && randomExp <= 5 )
             {
@@ -66,6 +67,7 @@ namespace JogoTurnBased
                 Amogus(); // retorna 10
             }
 
+            Console.WriteLine($"Você encontrou um {item}! e ganhou +{exp} de exp");
             return exp;
         }
     }
