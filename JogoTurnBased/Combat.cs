@@ -62,7 +62,7 @@ namespace JogoTurnBased
                     goto NewTurn;
 
                 case "curar":
-                    statusEnc.PlayerHPCheck = MaxHeal(statusEnc.MoveHeal(_player[3]), statusEnc.PlayerHPCheck, _player[0]);
+                    statusEnc.PlayerHPCheck = statusEnc.MoveHeal(_player[3], statusEnc.PlayerHPCheck, _player[0]);
                     statusEnc.MonsterAttack(statusEnc.PlayerHPCheck, _player[2], _name);
                     NewRound(statusEnc.DeathStatus());
                     goto NewTurn;
@@ -84,6 +84,7 @@ namespace JogoTurnBased
             EndBattle:
             _player[0] = statusEnc.PlayerHPCheck;
             Console.WriteLine("Batalha finalizada.");
+            // TODO:
             //_player[4] = GainEXP(_player[4], statusEnc.ReturnMonsterExp());
             //LevelUpPoints(_player[0], _player[1], _player[2], _player[3], _player[4], _player[5]);
             //Console.WriteLine($"Seu experiência no total: {_player[4]}");
@@ -109,19 +110,6 @@ namespace JogoTurnBased
                 case 3:
                     this.status = 1;
                     break;
-            }
-        }
-        public int MaxHeal(int heal, int hpcheck, int maxhp)
-        {
-            int cura = heal + hpcheck;
-            if (cura > maxhp)
-            {
-                int HPcure = maxhp - hpcheck;
-                return hpcheck + HPcure;
-            }
-            else
-            {
-                return heal + hpcheck;
             }
         }
     }

@@ -55,19 +55,31 @@ namespace JogoTurnBased
 
         // HEAL
         /// <summary>
-        /// Retona o valor curado, chance de 3/5 de ser retornar 0.
+        /// Cria um numéro aleatório de 1 a HealStat + 1, se for menor que 3 ou igual, cura. Caso contrário, retornará 0.
         /// </summary>
         /// <param name="HP"></param>
-        /// <param name="Heal"></param>
+        /// <param name="HealStat"></param>
         /// <returns></returns>
-        public int Heal(int HealStat)
+        public int Heal(int HealStat, int HP, int MaxHP)
         {
             int MissRnd = RandomMiss.Next(0, HealStat + 1);
-            if (MissRnd <= 3)
+            if ( MissRnd <= 3 )
             {
-                return 0;
+                int cura = HealStat + HP;
+                if (cura > MaxHP)
+                {
+                    int HPcure = MaxHP - HP;
+                    Console.WriteLine($"Você curou: {HPcure}");
+                    return HP + HPcure;
+                }
+                else
+                {
+                    Console.WriteLine($"Você curou: {HealStat}");
+                    return HealStat + HP;
+                }
             }
-            return MissRnd;
+            Console.WriteLine("Você falhou a cura!");
+            return HP;
         }
 
         // CHECAR HP DO PLAYER E MONSTRO

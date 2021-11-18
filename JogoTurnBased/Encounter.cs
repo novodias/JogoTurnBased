@@ -75,10 +75,9 @@ namespace JogoTurnBased
             int damage = Dodge(Attack(PlayerDamageStats, PlayerName), (int)MonsterInfo.InfoMonsterArray("dodge"), (string)MonsterInfo.InfoMonsterArray("name"));
             return MonstersHP = HPCheck(MonstersHP, damage);
         }
-        public int MoveHeal(int PlayerHealStats)
+        public int MoveHeal(int PlayerHealStats, int PlayerHealth, int PlayerMaxHealth)
         {
-            int heal = Heal(PlayerHealStats);
-            Console.WriteLine("Você curou: " + heal);
+            int heal = Heal(PlayerHealStats, PlayerHealth, PlayerMaxHealth);
             return heal;
         }
         public int MonsterAttack(int PlayerHealth, int PlayerDodge, string PlayerName)
