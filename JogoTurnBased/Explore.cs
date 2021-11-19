@@ -32,21 +32,21 @@ namespace JogoTurnBased
                 // Combate
                 cmmds.cmmdsInExplore();
                 cmmds.InsertText("");
-                return ExploreDungeon(_name, PlayerStats);
+                return ExploreDungeon(name, PlayerStats);
             }
             else if ( RandomFind > 50 && RandomFind <= 75 )
             {
                 FoundItems();
                 cmmds.cmmdsInExplore();
                 cmmds.InsertText("");
-                return ExploreDungeon(_name, PlayerStats);
+                return ExploreDungeon(name, PlayerStats);
             }
             else
             {
                 Console.WriteLine("Você encontrou nada.");
                 cmmds.cmmdsInExplore();
                 cmmds.InsertText("");
-                return ExploreDungeon(_name, PlayerStats);
+                return ExploreDungeon(name, PlayerStats);
             }
         }
 
