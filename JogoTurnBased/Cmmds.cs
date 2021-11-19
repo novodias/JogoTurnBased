@@ -13,6 +13,11 @@ namespace JogoTurnBased
             }
             return Text;
         }
+        public void cmmdsInExplore()
+        {
+            Console.WriteLine("Digite explorar para continuar");
+            Console.WriteLine("Digite quit para sair do jogo");
+        }
         public void cmmds()
         {
             Console.WriteLine("Digite andar para si aventurar!");

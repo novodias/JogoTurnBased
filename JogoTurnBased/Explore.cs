@@ -9,32 +9,42 @@ namespace JogoTurnBased
     public class Explore
     {
         // sem uso no momento.
+        private int[] _playerStats { get; set; }
         string MessageDungeonFound = "Você encontrou uma dungeon!";
         string MessageDungeonExplore = "Explorando a dungeon...";
-        public void FoundDungeon(int exp)
+        public void FoundDungeon(int[] getstats)
         {
+            _playerStats = getstats;
             Console.WriteLine(MessageDungeonFound);
-            ExploreDungeon(exp);
+            ExploreDungeon(_playerStats);
         }
 
-        private int ExploreDungeon(int exp)
+        private int ExploreDungeon(int[] PlayerStats)
         {
             Console.WriteLine(MessageDungeonExplore);
             Random random = new();
+            Cmmds cmmds = new();
             int RandomFind = random.Next(0, 101);
             if ( RandomFind >= 1 && RandomFind <= 50 )
             {
                 // Combate
-                return exp; // TODO
+                cmmds.cmmdsInExplore();
+                cmmds.InsertText("");
+                return ExploreDungeon(PlayerStats);
             }
             else if ( RandomFind > 50 && RandomFind <= 75 )
             {
-                return FoundItems();
+                FoundItems();
+                cmmds.cmmdsInExplore();
+                cmmds.InsertText("");
+                return ExploreDungeon(PlayerStats);
             }
             else
             {
                 Console.WriteLine("Você encontrou nada.");
-                return ExploreDungeon(exp);
+                cmmds.cmmdsInExplore();
+                cmmds.InsertText("");
+                return ExploreDungeon(PlayerStats);
             }
         }
 
@@ -45,7 +55,7 @@ namespace JogoTurnBased
             return ItemsReturn(ExpReturn);
         }
 
-        private int ItemsReturn(int randomExp)
+        private int ItemsReturn(int GetRandomExp)
         {
             int exp;
             string item;
@@ -54,11 +64,11 @@ namespace JogoTurnBased
             void Thanos() {     exp = 5;    item = "Thanos em T pose";      }
             void Amogus() {     exp = 10;   item = "Sus Amogus dourado";    }
 
-            if( randomExp >= 1 && randomExp <= 5 )
+            if( GetRandomExp >= 1 && GetRandomExp <= 5 )
             {
                 BigChungus(); // retorna 2
             }
-            else if ( randomExp > 5 && randomExp < 10 )
+            else if ( GetRandomExp > 5 && GetRandomExp < 10 )
             {
                 Thanos(); // retorna 5
             }
@@ -68,7 +78,7 @@ namespace JogoTurnBased
             }
 
             Console.WriteLine($"Você encontrou um {item}! e ganhou +{exp} de exp");
-            return exp;
+            return _playerStats[4] =+ exp;
         }
     }
 }
