@@ -95,6 +95,8 @@ namespace JogoTurnBased
 
                 PlayerStats[5] += PlayerStats[5]; // duplica o mínimo de exp requerido para upar.
 
+                Console.WriteLine($"Sua experiência até o próximo nível: {PlayerStats[4]}/{PlayerStats[5]}");
+
                 return LevelUpStats(ChooseStats, PlayerStats); // retorna os stats do player.
             }
             return PlayerStats;

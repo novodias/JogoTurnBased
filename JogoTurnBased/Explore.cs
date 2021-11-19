@@ -24,11 +24,18 @@ namespace JogoTurnBased
         private int[] ExploreDungeon(string name, int[] PlayerStats)
         {
             Console.WriteLine(MessageDungeonExplore);
+            Experience exp = new();
             Random random = new();
             int RandomFind = random.Next(0, 101);
             if ( RandomFind >= 1 && RandomFind <= 50 )
             {
                 // Combate
+                Combat battle = new();
+                battle.GetStatsBeforeCombat(name, PlayerStats);
+                battle.CombatStart();
+                PlayerStats = battle.ReturnStatsAfterCombat();
+                PlayerStats[4] = exp.GainEXP(PlayerStats[4], battle.mExp);
+                exp.LevelUp(PlayerStats);
                 return ContinueDungeon(name, PlayerStats);
             }
             else if ( RandomFind > 50 && RandomFind <= 75 )

@@ -82,13 +82,18 @@ namespace JogoTurnBased
                     goto PlayerAct;
             }
             EndBattle:
+            MonsterEXP(statusEnc.ReturnMonsterExp());
             _player[0] = statusEnc.PlayerHPCheck;
             Console.WriteLine("Batalha finalizada.");
-            // TODO:
-            //_player[4] = GainEXP(_player[4], statusEnc.ReturnMonsterExp());
-            //LevelUpPoints(_player[0], _player[1], _player[2], _player[3], _player[4], _player[5]);
-            //Console.WriteLine($"Seu experiência no total: {_player[4]}");
         }
+
+        public int mExp { get; private set; }
+
+        private void MonsterEXP(int getExp)
+        {
+            mExp = getExp;
+        }
+
         public void NewRound(int status)
         {
             // case 1 = PLAYER DEATH // case 2 = MONSTER DEATH // case 3 = CONTINUAR
