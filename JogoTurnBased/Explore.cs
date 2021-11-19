@@ -21,35 +21,49 @@ namespace JogoTurnBased
             ExploreDungeon(_name, _playerStats);
         }
 
-        private int ExploreDungeon(string name, int[] PlayerStats)
+        private int[] ExploreDungeon(string name, int[] PlayerStats)
         {
             Console.WriteLine(MessageDungeonExplore);
             Random random = new();
-            Cmmds cmmds = new();
             int RandomFind = random.Next(0, 101);
             if ( RandomFind >= 1 && RandomFind <= 50 )
             {
                 // Combate
-                cmmds.cmmdsInExplore();
-                cmmds.InsertText("");
-                return ExploreDungeon(name, PlayerStats);
+                return ContinueDungeon(name, PlayerStats);
             }
             else if ( RandomFind > 50 && RandomFind <= 75 )
             {
                 FoundItems();
-                cmmds.cmmdsInExplore();
-                cmmds.InsertText("");
-                return ExploreDungeon(name, PlayerStats);
+                return ContinueDungeon(name, PlayerStats);
             }
             else
             {
-                Console.WriteLine("Você encontrou nada.");
-                cmmds.cmmdsInExplore();
-                cmmds.InsertText("");
-                return ExploreDungeon(name, PlayerStats);
+                return ContinueDungeon(name, PlayerStats, "Você encontrou nada.");
             }
         }
 
+        #region Continue Dungeon
+        private int[] ContinueDungeon(string name, int[] PlayerStats)
+        {
+            Cmmds cmmds = new();
+            cmmds.cmmdsInExplore();
+            cmmds.InsertText("");
+            ExploreDungeon(name, PlayerStats);
+            return PlayerStats;
+        }
+
+        private int[] ContinueDungeon(string name, int[] PlayerStats, string message)
+        {
+            Console.WriteLine(message);
+            Cmmds cmmds = new();
+            cmmds.cmmdsInExplore();
+            cmmds.InsertText("");
+            ExploreDungeon(name, PlayerStats);
+            return PlayerStats;
+        }
+        #endregion
+
+        #region Items Related Methods
         private int FoundItems()
         {
             Random randomExp = new();
@@ -82,5 +96,6 @@ namespace JogoTurnBased
             Console.WriteLine($"Você encontrou um {item}! e ganhou +{exp} de exp");
             return _playerStats[4] =+ exp;
         }
+        #endregion
     }
 }
