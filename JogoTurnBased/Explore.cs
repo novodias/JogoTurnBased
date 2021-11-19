@@ -10,16 +10,18 @@ namespace JogoTurnBased
     {
         // sem uso no momento.
         private int[] _playerStats { get; set; }
+        private string _name { get; set; }
         string MessageDungeonFound = "Você encontrou uma dungeon!";
         string MessageDungeonExplore = "Explorando a dungeon...";
-        public void FoundDungeon(int[] getstats)
+        public void FoundDungeon(string name, int[] getstats)
         {
+            _name = name;
             _playerStats = getstats;
             Console.WriteLine(MessageDungeonFound);
-            ExploreDungeon(_playerStats);
+            ExploreDungeon(_name, _playerStats);
         }
 
-        private int ExploreDungeon(int[] PlayerStats)
+        private int ExploreDungeon(string name, int[] PlayerStats)
         {
             Console.WriteLine(MessageDungeonExplore);
             Random random = new();
@@ -30,21 +32,21 @@ namespace JogoTurnBased
                 // Combate
                 cmmds.cmmdsInExplore();
                 cmmds.InsertText("");
-                return ExploreDungeon(PlayerStats);
+                return ExploreDungeon(_name, PlayerStats);
             }
             else if ( RandomFind > 50 && RandomFind <= 75 )
             {
                 FoundItems();
                 cmmds.cmmdsInExplore();
                 cmmds.InsertText("");
-                return ExploreDungeon(PlayerStats);
+                return ExploreDungeon(_name, PlayerStats);
             }
             else
             {
                 Console.WriteLine("Você encontrou nada.");
                 cmmds.cmmdsInExplore();
                 cmmds.InsertText("");
-                return ExploreDungeon(PlayerStats);
+                return ExploreDungeon(_name, PlayerStats);
             }
         }
 
