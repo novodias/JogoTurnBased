@@ -20,6 +20,7 @@ namespace JogoTurnBased
             int totalExp = PlayerExp + MonsterExp;
             return totalExp; // Valor exp definido do monstro.
         }
+
         /// <summary>
         /// Checa se o player upou com um metodo booleano
         /// </summary>
@@ -35,40 +36,41 @@ namespace JogoTurnBased
             }
             return false;
         }
-        private int LevelUpStats(string stats, int HP, int Attack, int Dodge, int Heal)
+
+        private int[] LevelUpStats(string stats, int[] playerStats)
         {
             Random randomStat = new();
-            int final;
+            //int final;
             NewTry:
             switch (stats)
             {
                 case "HP":
                 case "Hp":
                 case "hp":
-                    final = HP + randomStat.Next(0, 16);
-                    Console.WriteLine($"Você upou HP, e aumentou para {final}");
-                    return final;
+                    playerStats[0] =+ randomStat.Next(0, 16);
+                    Console.WriteLine($"Você upou HP, e aumentou para {playerStats[0]}");
+                    return playerStats;
 
                 case "DANO":
                 case "Dano":
                 case "dano":
-                    final = Attack + randomStat.Next(0, 6);
-                    Console.WriteLine($"Você upou Dano, e aumentou para {final}");
-                    return final;
+                    playerStats[1] =+ randomStat.Next(0, 6);
+                    Console.WriteLine($"Você upou Dano, e aumentou para {playerStats[1]}");
+                    return playerStats;
 
                 case "ESQUIVA":
                 case "Esquiva":
                 case "esquiva":
-                    final = Dodge + randomStat.Next(0, 6);
-                    Console.WriteLine($"Você upou Esquiva, e aumentou para {final}");
-                    return final;
+                    playerStats[2] =+ randomStat.Next(0, 6);
+                    Console.WriteLine($"Você upou Esquiva, e aumentou para {playerStats[2]}");
+                    return playerStats;
 
                 case "CURA":
                 case "Cura":
                 case "cura":
-                    final = Heal + randomStat.Next(0, 6);
-                    Console.WriteLine($"Você upou Cura, e aumentou para {final}");
-                    return final;
+                    playerStats[3] =+ randomStat.Next(0, 6);
+                    Console.WriteLine($"Você upou Cura, e aumentou para {playerStats[3]}");
+                    return playerStats;
 
                 default:
                     Console.WriteLine("Digite corretamente o status!");
@@ -76,24 +78,39 @@ namespace JogoTurnBased
                     goto NewTry; // talvez não funcione
             }
         }
-        /// <summary>
-        /// Método em que o jogador consegue upar algum de seus status.
-        /// </summary>
-        /// <param name="HP"></param>
-        /// <param name="Attack"></param>
-        /// <param name="Dodge"></param>
-        /// <param name="Heal"></param>
-        /// <returns></returns>
-        public void LevelUpPoints(int HP, int Attack, int Dodge, int Heal, int PlayerExp, int PlayerLevelUpMin)
+
+        public int[] LevelUp(int[] PlayerStats)
         {
-            if (CheckLevelUp(PlayerExp, PlayerLevelUpMin) == true)
+            if(CheckLevelUp(PlayerStats[4], PlayerStats[5]) == true)
             {
-                Console.WriteLine($"Você upou de nível, e tem agora a quantidade de pontos: {Points}");
-                Points--;
-                Console.WriteLine($"Escolha um dos status para upar: HP: {HP}, Dano: {Attack}, Esquiva: {Dodge} e Cura: {Heal}.");
+                Console.WriteLine($"Você upou para o nível: {Points}, e agora pode upar um stat!");
+                Console.WriteLine($"Escolha um dos status para upar: " +
+                    $"HP: {PlayerStats[0]}, " +
+                    $"Dano: {PlayerStats[1]}, " +
+                    $"Esquiva: {PlayerStats[2]} e " +
+                    $"Cura: {PlayerStats[3]}.");
+
                 string ChooseStats = Console.ReadLine();
-                LevelUpStats(ChooseStats, HP, Attack, Dodge, Heal);
+                ChooseStats.ToLower();
+
+                PlayerStats[5] += PlayerStats[5]; // duplica o mínimo de exp requerido para upar.
+
+                return LevelUpStats(ChooseStats, PlayerStats); // retorna os stats do player.
             }
+            return PlayerStats;
         }
+
+
+        //public void LevelUpPoints(int HP, int Attack, int Dodge, int Heal, int PlayerExp, int PlayerLevelUpMin)
+        //{
+        //    if (CheckLevelUp(PlayerExp, PlayerLevelUpMin) == true)
+        //    {
+        //        Console.WriteLine($"Você upou de nível, e tem agora a quantidade de pontos: {Points}");
+        //        Points--;
+        //        Console.WriteLine($"Escolha um dos status para upar: HP: {HP}, Dano: {Attack}, Esquiva: {Dodge} e Cura: {Heal}.");
+        //        string ChooseStats = Console.ReadLine();
+        //        LevelUpStats(ChooseStats, HP, Attack, Dodge, Heal);
+        //    }
+        //}
     }
 }
