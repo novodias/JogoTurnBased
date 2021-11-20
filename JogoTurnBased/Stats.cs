@@ -38,6 +38,5 @@ namespace JogoTurnBased
     partial class Encounter
     {
         public int PlayerHPCheck {get; set;}
-        // UNUSED public int MonsterHPCheck {get; private set;}
     }
 }

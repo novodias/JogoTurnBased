@@ -28,28 +28,11 @@ namespace JogoTurnBased
 
             Message.MoveMessage(playerName.ReturnPlayerName());
 
-            //Combat CombatNow = new();
-
             int[] playerStats = new int[6] { player.HP, player.Damage, player.Dodge, player.Heal, player.EXP, player.EXPtoLevelUP};
 
             Explore explore = new();
             explore.FoundDungeon(playerName.ReturnPlayerName(), playerStats);
 
-
-            //Encontrar:
-            //playerClient.FindMonsters();
-            //CombatNow.GetStatsBeforeCombat(playerName.ReturnPlayerName(), playerStats);
-            //CombatNow.CombatStart();
-            //playerStats = CombatNow.ReturnStatsAfterCombat();
-            //Console.WriteLine($"PROGRAM HP: {playerStats[0]}");
-            //if (playerStats[0] > 0)
-            //{
-            //    goto Encontrar;
-            //}
-            //else 
-            //{ 
-            //    goto Start;
-            //}
         }
     }
 }

@@ -40,7 +40,6 @@ namespace JogoTurnBased
         private int[] LevelUpStats(string stats, int[] playerStats)
         {
             Random randomStat = new();
-            //int final;
             NewTry:
             switch (stats)
             {
@@ -75,7 +74,7 @@ namespace JogoTurnBased
                 default:
                     Console.WriteLine("Digite corretamente o status!");
                     stats = Console.ReadLine();
-                    goto NewTry; // talvez não funcione
+                    goto NewTry;
             }
         }
 
@@ -101,18 +100,5 @@ namespace JogoTurnBased
             }
             return PlayerStats; // retorna os stats originais do player.
         }
-
-
-        //public void LevelUpPoints(int HP, int Attack, int Dodge, int Heal, int PlayerExp, int PlayerLevelUpMin)
-        //{
-        //    if (CheckLevelUp(PlayerExp, PlayerLevelUpMin) == true)
-        //    {
-        //        Console.WriteLine($"Você upou de nível, e tem agora a quantidade de pontos: {Points}");
-        //        Points--;
-        //        Console.WriteLine($"Escolha um dos status para upar: HP: {HP}, Dano: {Attack}, Esquiva: {Dodge} e Cura: {Heal}.");
-        //        string ChooseStats = Console.ReadLine();
-        //        LevelUpStats(ChooseStats, HP, Attack, Dodge, Heal);
-        //    }
-        //}
     }
 }
