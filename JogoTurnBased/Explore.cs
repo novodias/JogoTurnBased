@@ -124,6 +124,7 @@ namespace JogoTurnBased
         }
         #endregion
 
+        #region Is Player Dead Method
         private bool IsPlayerDead(int status)
         {
             switch (status)
@@ -138,5 +139,6 @@ namespace JogoTurnBased
                     return false;
             }
         }
+        #endregion
     }
 }
