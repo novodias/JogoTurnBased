@@ -41,6 +41,7 @@ namespace JogoTurnBased
             else if ( RandomFind > 50 && RandomFind <= 75 )
             {
                 FoundItems();
+                exp.LevelUp(PlayerStats);
                 return ContinueDungeon(name, PlayerStats);
             }
             else
