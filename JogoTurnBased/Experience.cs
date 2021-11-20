@@ -98,6 +98,7 @@ namespace JogoTurnBased
 
                 return LevelUpStats(ChooseStats, PlayerStats); // retorna os stats do player após upar.
             }
+            Console.WriteLine($"Sua experiência até o próximo nível: {PlayerStats[4]}/{PlayerStats[5]}");
             return PlayerStats; // retorna os stats originais do player.
         }
     }

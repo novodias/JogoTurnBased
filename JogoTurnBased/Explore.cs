@@ -29,23 +29,31 @@ namespace JogoTurnBased
             int RandomFind = random.Next(0, 101);
             if ( RandomFind >= 1 && RandomFind <= 50 )
             {
-                // Combate
+                // Combat
                 Combat battle = new();
                 battle.GetStatsBeforeCombat(name, PlayerStats);
                 battle.CombatStart();
                 PlayerStats = battle.ReturnStatsAfterCombat();
+
+                // Exp
                 PlayerStats[4] = exp.GainEXP(PlayerStats[4], battle.mExp);
                 exp.LevelUp(PlayerStats);
+
+                // Loop
                 return ContinueDungeon(name, PlayerStats);
             }
             else if ( RandomFind > 50 && RandomFind <= 75 )
             {
+                // Items
                 FoundItems();
                 exp.LevelUp(PlayerStats);
+
+                // Loop
                 return ContinueDungeon(name, PlayerStats);
             }
             else
             {
+                // Loop
                 return ContinueDungeon(name, PlayerStats, "Você encontrou nada.");
             }
         }
@@ -105,5 +113,20 @@ namespace JogoTurnBased
             return _playerStats[4] += exp;
         }
         #endregion
+
+        private bool IsPlayerDead(int status)
+        {
+            switch (status)
+            {
+                default:
+                    return true;
+
+                case 0:
+                    return false;
+
+                case 1:
+                    return false;
+            }
+        }
     }
 }
