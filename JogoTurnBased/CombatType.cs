@@ -26,7 +26,7 @@ namespace JogoTurnBased
         // ATAQUE
         public int Attack(int Attack, string infoAttacker)
         {
-            CriticalDMG = RandomMiss.Next(1, Attack + 1);
+            CriticalDMG = RandomMiss.Next(Attack - 4, Attack + 1);
             if(CriticalDMG == Attack)
             {
                 int DamageInfo = CriticalDMG * 2;
@@ -62,8 +62,8 @@ namespace JogoTurnBased
         /// <returns></returns>
         public int Heal(int HealStat, int HP, int MaxHP)
         {
-            int MissRnd = RandomMiss.Next(0, HealStat + 1);
-            if ( MissRnd <= 3 )
+            int MissRnd = RandomMiss.Next(0, 10);
+            if ( MissRnd <= 4 )
             {
                 int cura = HealStat + HP;
                 if (cura > MaxHP)

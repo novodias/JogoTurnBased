@@ -102,12 +102,12 @@ namespace JogoTurnBased
         {
             void Found()
             {
-                Console.WriteLine("Você achou uma poção de HP! e recuperou 20 de HP");
+                Console.WriteLine("Você achou uma poção de HP! e recuperou 5 de HP");
                 _playerStats[0] += 5;
             }
 
             Random randomPotion = new();
-            if (randomPotion.Next(0, 11) <= 7)
+            if (randomPotion.Next(0, 11) <= 5)
             {
                 Found();
             }
