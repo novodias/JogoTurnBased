@@ -46,28 +46,28 @@ namespace JogoTurnBased
                 case "HP":
                 case "Hp":
                 case "hp":
-                    playerStats[0] += randomStat.Next(0, 16);
+                    playerStats[0] += randomStat.Next(1, 16);
                     Console.WriteLine($"Você upou HP, e aumentou para {playerStats[0]}");
                     return playerStats;
 
                 case "DANO":
                 case "Dano":
                 case "dano":
-                    playerStats[1] += randomStat.Next(0, 6);
+                    playerStats[1] += randomStat.Next(1, 6);
                     Console.WriteLine($"Você upou Dano, e aumentou para {playerStats[1]}");
                     return playerStats;
 
                 case "ESQUIVA":
                 case "Esquiva":
                 case "esquiva":
-                    playerStats[2] += randomStat.Next(0, 6);
+                    playerStats[2] += randomStat.Next(1, 6);
                     Console.WriteLine($"Você upou Esquiva, e aumentou para {playerStats[2]}");
                     return playerStats;
 
                 case "CURA":
                 case "Cura":
                 case "cura":
-                    playerStats[3] += randomStat.Next(0, 6);
+                    playerStats[3] += randomStat.Next(1, 6);
                     Console.WriteLine($"Você upou Cura, e aumentou para {playerStats[3]}");
                     return playerStats;
 
