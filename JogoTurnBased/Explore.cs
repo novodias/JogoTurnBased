@@ -35,12 +35,22 @@ namespace JogoTurnBased
                 battle.CombatStart();
                 PlayerStats = battle.ReturnStatsAfterCombat();
 
+                // Player Retry
+                if ( IsPlayerDead( battle.status ) && PlayerStats[0] <= 0 )
+                {
+                    goto Retry;
+                }
+
                 // Exp
                 PlayerStats[4] = exp.GainEXP(PlayerStats[4], battle.mExp);
                 exp.LevelUp(PlayerStats);
 
                 // Loop
                 return ContinueDungeon(name, PlayerStats);
+
+                // Death
+                Retry:
+                return PlayerStats;
             }
             else if ( RandomFind > 50 && RandomFind <= 75 )
             {

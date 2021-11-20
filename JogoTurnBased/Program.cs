@@ -33,6 +33,7 @@ namespace JogoTurnBased
             Explore explore = new();
             explore.FoundDungeon(playerName.ReturnPlayerName(), playerStats);
 
+            goto Start;
         }
     }
 }

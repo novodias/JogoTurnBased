@@ -30,7 +30,7 @@ namespace JogoTurnBased
         /// <summary>
         /// status = 0 (BATALHA NOVA), status = 1 (CONTINUAR BATALHA), status != 1,0 (MORTE)
         /// </summary>
-        int status { get; set; } = 0;
+        public int status { get; private set; } = 0;
         public void CombatStart()
         {
             Encounter statusEnc = new();
@@ -45,7 +45,15 @@ namespace JogoTurnBased
             {
                 statusEnc.FinalEncounterMonster(1);
             }
-            else goto EndBattle;
+            else if ( this.status == -1 && statusEnc.PlayerHPCheck <= 0 )
+            {
+                _player[0] = statusEnc.PlayerHPCheck;
+                goto PlayerDeath;
+            }
+            else 
+            { 
+                goto EndBattle; 
+            }
 
             ActionClass action = new();
 
@@ -84,6 +92,7 @@ namespace JogoTurnBased
             EndBattle:
             MonsterEXP(statusEnc.ReturnMonsterExp());
             _player[0] = statusEnc.PlayerHPCheck;
+            PlayerDeath:
             Console.WriteLine("Batalha finalizada.");
         }
 
@@ -97,6 +106,7 @@ namespace JogoTurnBased
         public void NewRound(int status)
         {
             // case 1 = PLAYER DEATH // case 2 = MONSTER DEATH // case 3 = CONTINUAR
+            // status = 0 (BATALHA NOVA), status = 1 (CONTINUAR BATALHA), status != 1,0 (MORTE)
             switch (status)
             {
                 case 1:
@@ -106,6 +116,7 @@ namespace JogoTurnBased
                     {
                         Environment.Exit(1);
                     }
+                    this.status = -1;
                     break;
 
                 case 2:
@@ -117,5 +128,6 @@ namespace JogoTurnBased
                     break;
             }
         }
+
     }
 }
