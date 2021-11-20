@@ -94,7 +94,23 @@ namespace JogoTurnBased
         {
             Random randomExp = new();
             int ExpReturn = randomExp.Next(0, 11);
+            HPpotion();
             return ItemsReturn(ExpReturn);
+        }
+
+        private void HPpotion()
+        {
+            void Found()
+            {
+                Console.WriteLine("Você achou uma poção de HP! e recuperou 20 de HP");
+                _playerStats[0] += 5;
+            }
+
+            Random randomPotion = new();
+            if (randomPotion.Next(0, 11) <= 7)
+            {
+                Found();
+            }
         }
 
         private int ItemsReturn(int GetRandomExp)
