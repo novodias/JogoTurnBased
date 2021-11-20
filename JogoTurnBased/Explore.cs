@@ -101,7 +101,7 @@ namespace JogoTurnBased
             }
 
             Console.WriteLine($"Você encontrou um {item}! e ganhou +{exp} de exp");
-            return _playerStats[4] =+ exp;
+            return _playerStats[4] += exp;
         }
         #endregion
     }
