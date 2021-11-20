@@ -8,7 +8,6 @@ namespace JogoTurnBased
 {
     public class Explore
     {
-        // sem uso no momento.
         private int[] _playerStats { get; set; }
         private string _name { get; set; }
         string MessageDungeonFound = "Você encontrou uma dungeon!";

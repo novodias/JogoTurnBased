@@ -62,7 +62,7 @@ namespace JogoTurnBased
         /// <returns></returns>
         public int Heal(int HealStat, int HP, int MaxHP)
         {
-            int MissRnd = RandomMiss.Next(0, 10);
+            int MissRnd = RandomMiss.Next(0, 11);
             if ( MissRnd <= 4 )
             {
                 int cura = HealStat + HP;
