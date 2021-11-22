@@ -53,8 +53,7 @@ namespace JogoTurnBased
                         break;
 
                     case -1:
-                        _player[0] = statusEnc.PlayerHPCheck;
-                        EndBattle();
+                        EndBattle(); // PLAYER MORTO
                         break;
 
                     default:
@@ -163,7 +162,7 @@ namespace JogoTurnBased
 
             void EndBattle()
             {
-                if (_player[0] > 0) // Player vivo
+                if (statusEnc.PlayerHPCheck > 0) // Player vivo
                 {
                     mExp = statusEnc.ReturnMonsterExp();
                     _player[0] = statusEnc.PlayerHPCheck;
