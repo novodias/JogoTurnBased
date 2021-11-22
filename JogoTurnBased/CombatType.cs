@@ -83,31 +83,25 @@ namespace JogoTurnBased
         }
 
         // CHECAR HP DO PLAYER E MONSTRO
-        private bool CheckPlayer()
+        private bool IsPlayerAlive()
         {
-            if (PlayerHP <= 0)
-            {
-                return true;
-            }
-            return false;
+            bool IsAlive = PlayerHP <= 0 ? true : false;
+            return IsAlive;
         }
-        private bool CheckMonster()
+        private bool IsMonsterAlive()
         {
-            if (MonstersHP <= 0)
-            {
-                return true;
-            }
-            return false;
+            bool IsAlive = MonstersHP <= 0 ? true : false;
+            return IsAlive;
         }
 
         // CHECAR SE ALGUM DOS DOIS ESTA MORTO
         public int CheckDeath()
         {
-            if(CheckPlayer() == true && CheckMonster() == false)
+            if(IsPlayerAlive() == true && IsMonsterAlive() == false)
             {
                 return 1;
             }
-            else if (CheckMonster() == true && CheckPlayer() == false)
+            else if (IsMonsterAlive() == true && IsPlayerAlive() == false)
             {
                 return 2;
             }
