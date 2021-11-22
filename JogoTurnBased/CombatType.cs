@@ -6,8 +6,6 @@ namespace JogoTurnBased
     {
         public int PlayerHP {get; set;}
         public int MonstersHP {get; set;}
-        public int FinalHP {get; private set;}
-        private int CriticalDMG {get; set;}
 
         Random RandomMiss = new Random();
 
@@ -19,14 +17,20 @@ namespace JogoTurnBased
         /// <returns></returns>
         public int HPCheck(int HP, int Attack)
         {
-            FinalHP = HP - Attack;
+            int FinalHP = HP - Attack;
             return FinalHP;
         }
 
         // ATAQUE
+        /// <summary>
+        /// Pega o valor definido do status do Player/Monster e retorna entre (Ataque - 4 a Ataque + 1) 
+        /// </summary>
+        /// <param name="Attack"></param>
+        /// <param name="infoAttacker"></param>
+        /// <returns></returns>
         public int Attack(int Attack, string infoAttacker)
         {
-            CriticalDMG = RandomMiss.Next(Attack - 4, Attack + 1);
+            int CriticalDMG = RandomMiss.Next(Attack - 4, Attack + 1);
             if(CriticalDMG == Attack)
             {
                 int DamageInfo = CriticalDMG * 2;
