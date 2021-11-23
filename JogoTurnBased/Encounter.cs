@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 
 namespace JogoTurnBased
 {
@@ -6,6 +7,8 @@ namespace JogoTurnBased
     partial class Encounter : CombatType
     {
         MonsterData MonsterInfo = new();
+
+        #region Encounter
         private void SelectMonster()
         {
             Random RandomMonster = new Random();
@@ -86,5 +89,6 @@ namespace JogoTurnBased
             PlayerHP = HPCheck(PlayerHealth, damage);
             return PlayerHPCheck = PlayerHP;
         }
+        #endregion
     }
 }

@@ -12,6 +12,7 @@ namespace JogoTurnBased
         private string _name { get; set; }
         string MessageDungeonFound = "Você encontrou uma dungeon!";
         string MessageDungeonExplore = "Explorando a dungeon...";
+        Experience exp = new();
         public void FoundDungeon(string name, int[] getstats)
         {
             _name = name;
@@ -23,7 +24,6 @@ namespace JogoTurnBased
         private int[] ExploreDungeon(string name, int[] PlayerStats)
         {
             Console.WriteLine(MessageDungeonExplore);
-            Experience exp = new();
             Random random = new();
             int RandomFind = random.Next(0, 101);
             if ( RandomFind >= 1 && RandomFind <= 50 )
