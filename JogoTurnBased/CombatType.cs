@@ -6,8 +6,14 @@ namespace JogoTurnBased
     {
         public int PlayerHP {get; set;}
         public int MonstersHP {get; set;}
-
         Random RandomMiss = new Random();
+
+        // TODO: Um method void que retorna valor aleatório 
+        private int RandomNumber(int number1, int number2)
+        {
+            return RandomMiss.Next(number1, number2);
+        }
+        //
 
         /// <summary>
         /// Retorna o HP depois do ataque
