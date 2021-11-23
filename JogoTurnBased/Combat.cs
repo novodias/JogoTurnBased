@@ -32,6 +32,7 @@ namespace JogoTurnBased
         /// status = 0 (BATALHA NOVA), status = 1 (CONTINUAR BATALHA), status != 1,0 (MORTE)
         /// </summary>
         public int status { get; private set; } = 0;
+        public int mExp { get; private set; }
         public void CombatStart()
         {
             Encounter statusEnc = new();
@@ -116,8 +117,6 @@ namespace JogoTurnBased
                 }
             }
         }
-
-        public int mExp { get; private set; }
 
         public void NewRound(int status)
         {
