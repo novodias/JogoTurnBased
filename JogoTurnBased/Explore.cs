@@ -13,6 +13,7 @@ namespace JogoTurnBased
         string MessageDungeonFound = "Você encontrou uma dungeon!";
         string MessageDungeonExplore = "Explorando a dungeon...";
         Experience exp = new();
+        Random random = new();
         public void FoundDungeon(string name, int[] getstats)
         {
             _name = name;
@@ -24,7 +25,6 @@ namespace JogoTurnBased
         private int[] ExploreDungeon(string name, int[] PlayerStats)
         {
             Console.WriteLine(MessageDungeonExplore);
-            Random random = new();
             int RandomFind = random.Next(0, 101);
             if ( RandomFind >= 1 && RandomFind <= 50 )
             {
@@ -89,8 +89,7 @@ namespace JogoTurnBased
         #region Items Related Methods
         private int FoundItems()
         {
-            Random randomExp = new();
-            int ExpReturn = randomExp.Next(0, 11);
+            int ExpReturn = random.Next(0, 11);
             HPpotion();
             return ItemsReturn(ExpReturn);
         }
@@ -112,8 +111,7 @@ namespace JogoTurnBased
                 }
             }
 
-            Random randomPotion = new();
-            if (randomPotion.Next(0, 11) <= 5)
+            if (random.Next(0, 11) <= 5)
             {
                 Found();
             }
