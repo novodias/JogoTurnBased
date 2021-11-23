@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace JogoTurnBased
 {
-    public class Combat : Experience
+    public class Combat
     {
         private string _name { get; set; }
         private int[] _player { get; set; }
