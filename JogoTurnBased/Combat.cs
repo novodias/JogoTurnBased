@@ -17,6 +17,7 @@ namespace JogoTurnBased
         //_player[3] = heal
         //_player[4] = exp
         //_player[5] = exptolevelup
+        //_player[6] = maxhealth
 
         public void GetStatsBeforeCombat(string PlayerName, int[] PlayerStats)
         {
@@ -98,7 +99,7 @@ namespace JogoTurnBased
                         break;
 
                     case "curar":
-                        statusEnc.PlayerHPCheck = statusEnc.MoveHeal(_player[3], statusEnc.PlayerHPCheck, _player[0]);
+                        statusEnc.PlayerHPCheck = statusEnc.MoveHeal(_player[3], statusEnc.PlayerHPCheck, _player[6]);
                         statusEnc.MonsterAttack(statusEnc.PlayerHPCheck, _player[2], _name);
                         NewRound(statusEnc.DeathStatus());
                         ChangeStatusBattle();

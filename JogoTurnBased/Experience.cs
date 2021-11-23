@@ -46,8 +46,8 @@ namespace JogoTurnBased
                 case "HP":
                 case "Hp":
                 case "hp":
-                    playerStats[0] += randomStat.Next(1, 16);
-                    Console.WriteLine($"Você upou HP, e aumentou para {playerStats[0]}");
+                    playerStats[6] += randomStat.Next(1, 16);
+                    Console.WriteLine($"Você upou o HP máximo, e aumentou para {playerStats[6]}");
                     return playerStats;
 
                 case "DANO":
@@ -84,7 +84,7 @@ namespace JogoTurnBased
             {
                 Console.WriteLine($"Você upou para o nível: {Points}, e agora pode upar um stat!");
                 Console.WriteLine($"Escolha um dos status para upar: " +
-                    $"HP: {PlayerStats[0]}, " +
+                    $"HP máximo: {PlayerStats[6]}, " +
                     $"Dano: {PlayerStats[1]}, " +
                     $"Esquiva: {PlayerStats[2]} e " +
                     $"Cura: {PlayerStats[3]}.");

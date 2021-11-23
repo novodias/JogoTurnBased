@@ -47,6 +47,10 @@ namespace JogoTurnBased
             {
                 int DamageInfo = RandomMiss.Next(Attack - 4, Attack + 1);
                 Console.WriteLine(infoAttacker + " deu: " + DamageInfo);
+                if (DamageInfo <= 0)
+                {
+                    return 1;
+                }
                 return DamageInfo;
             }
         }

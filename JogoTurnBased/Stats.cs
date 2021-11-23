@@ -32,6 +32,7 @@ namespace JogoTurnBased
         public int Dodge {get; private set;} = 10;
         public int EXP { get; set; } = 0;
         public int EXPtoLevelUP { get; set; } = 10;
+        public int MaxHealth { get; set; } = 100;
 
     }
 

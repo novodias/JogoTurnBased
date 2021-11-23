@@ -28,7 +28,7 @@ namespace JogoTurnBased
 
             Message.MoveMessage(playerName.ReturnPlayerName());
 
-            int[] playerStats = new int[6] { player.HP, player.Damage, player.Dodge, player.Heal, player.EXP, player.EXPtoLevelUP};
+            int[] playerStats = new int[7] { player.HP, player.Damage, player.Dodge, player.Heal, player.EXP, player.EXPtoLevelUP, player.MaxHealth};
 
             Explore explore = new();
             explore.FoundDungeon(playerName.ReturnPlayerName(), playerStats);
