@@ -30,7 +30,6 @@ namespace JogoTurnBased
         {
             return (int)MonsterInfo.InfoMonsterArray("exp");
         }
-        Cmmds commands = new Cmmds();
 
         public int FinalEncounterMonster(int num)
         {
@@ -57,7 +56,7 @@ namespace JogoTurnBased
             Console.WriteLine("Seu HP: " + PlayerHPCheck);
             Console.WriteLine("HP do " + (string)MonsterInfo.InfoMonsterArray("name") + ": " + MonstersHP);
             Console.WriteLine("O que pretende fazer?");
-            commands.cmmdsInCombat();
+            Cmmds.List("combat");
         }
         public int DeathStatus()
         {

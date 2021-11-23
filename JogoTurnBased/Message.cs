@@ -8,11 +8,10 @@ namespace JogoTurnBased
 {
     public class MessageClass
     {
-        Cmmds commands = new Cmmds();
         public void InitialMessage(string playerName)
         {
             Console.WriteLine("Olá " + playerName + ", seja bem-vindo ao jogo Turn Based, se prepare para lutar!");
-            commands.cmmds();
+            Cmmds.List("begin");
         }
         public void MoveMessage(string playerName)
         {

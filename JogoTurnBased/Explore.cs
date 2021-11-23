@@ -70,9 +70,8 @@ namespace JogoTurnBased
         #region Continue Dungeon
         private int[] ContinueDungeon(string name, int[] PlayerStats)
         {
-            Cmmds cmmds = new();
-            cmmds.cmmdsInExplore();
-            cmmds.InsertText("");
+            Cmmds.List("explore");
+            Cmmds.InsertText();
             ExploreDungeon(name, PlayerStats);
             return PlayerStats;
         }
@@ -80,9 +79,8 @@ namespace JogoTurnBased
         private int[] ContinueDungeon(string name, int[] PlayerStats, string message)
         {
             Console.WriteLine(message);
-            Cmmds cmmds = new();
-            cmmds.cmmdsInExplore();
-            cmmds.InsertText("");
+            Cmmds.List("explore");
+            Cmmds.InsertText();
             ExploreDungeon(name, PlayerStats);
             return PlayerStats;
         }

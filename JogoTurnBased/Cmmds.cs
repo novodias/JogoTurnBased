@@ -4,31 +4,44 @@ namespace JogoTurnBased
 {
     public class Cmmds
     {
-        public string InsertText(string Text)
+        public static string InsertText()
         {
-            Text = Console.ReadLine();
+            string Text = Console.ReadLine();
             if (Text == "quit")
             {
                 Environment.Exit(1);
             }
             return Text;
         }
-        public void cmmdsInExplore()
+
+        /// <summary>
+        /// Lista de comandos. (explore, combat e begin)
+        /// </summary>
+        /// <param name="cmmdoption"></param>
+        public static void List(string cmmdoption)
         {
-            Console.WriteLine("Digite explorar para continuar");
-            Console.WriteLine("Digite quit para sair do jogo");
-        }
-        public void cmmds()
-        {
-            Console.WriteLine("Digite andar para si aventurar!");
-            Console.WriteLine("Digite quit para sair.");
-        }
-        public void cmmdsInCombat()
-        {
-            Console.WriteLine("Digite atacar para dar dano no monstro.");
-            Console.WriteLine("Digite esperar para pular o turno.");
-            Console.WriteLine("Digite curar para si curar.");
-            Console.WriteLine("Digite quit para sair do jogo.");
+            switch (cmmdoption)
+            {
+                case "explore":
+                    Console.WriteLine
+                        ("Digite explorar para continuar\n" +
+                        "Digite quit para sair do jogo");
+                    break;
+
+                case "combat":
+                    Console.WriteLine
+                        ("Digite atacar para dar dano no monstro.\n" +
+                        "Digite esperar para pular o turno.\n" +
+                        "Digite curar para si curar.\n" +
+                        "Digite quit para sair do jogo.");
+                    break;
+
+                case "begin":
+                    Console.WriteLine
+                        ("Digite andar para si aventurar!\n" +
+                        "Digite quit para sair.");
+                    break;
+            }
         }
     }
 }

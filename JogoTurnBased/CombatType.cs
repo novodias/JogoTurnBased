@@ -49,7 +49,7 @@ namespace JogoTurnBased
                 Console.WriteLine(infoAttacker + " deu: " + DamageInfo);
                 if (DamageInfo <= 0)
                 {
-                    return 1;
+                    return +1;
                 }
                 return DamageInfo;
             }

@@ -22,9 +22,8 @@ namespace JogoTurnBased
             MessageClass Message = new();
             Message.InitialMessage(playerName.ReturnPlayerName());
 
-            Cmmds commands = new();
             ActionClass action = new();
-            action.GetAction(commands.InsertText(""));
+            action.GetAction(Cmmds.InsertText());
 
             Message.MoveMessage(playerName.ReturnPlayerName());
 
