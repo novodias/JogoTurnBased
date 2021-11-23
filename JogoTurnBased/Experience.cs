@@ -16,9 +16,17 @@ namespace JogoTurnBased
         /// <returns></returns>
         public int GainEXP(int PlayerExp, int MonsterExp)
         {
-            //Random RandomExp = new();
-            int totalExp = PlayerExp + MonsterExp;
-            return totalExp; // Valor exp definido do monstro.
+            int totalExp;
+            if (Points == 0 || Points == 1)
+            {
+                totalExp = PlayerExp + MonsterExp;
+                return totalExp; // Valor exp definido do monstro.
+            }
+            else
+            {
+                totalExp = PlayerExp + (MonsterExp * Points); // Valor exp definido do monstro multiplicado pelo nível.
+                return totalExp;
+            }
         }
 
         /// <summary>
@@ -92,7 +100,7 @@ namespace JogoTurnBased
                 string ChooseStats = Console.ReadLine();
                 ChooseStats.ToLower();
 
-                PlayerStats[5] += PlayerStats[5]; // duplica o mínimo de exp requerido para upar.
+                PlayerStats[5] += PlayerStats[5];
 
                 Console.WriteLine($"Sua experiência até o próximo nível: {PlayerStats[4]}/{PlayerStats[5]}");
 
