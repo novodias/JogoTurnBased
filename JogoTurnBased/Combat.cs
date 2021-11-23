@@ -63,28 +63,6 @@ namespace JogoTurnBased
                 }
             }
 
-            #region Old Way of Starting the Battle and Looping
-            //NewTurn:
-            //if (this.status == 0)
-            //{
-            //    statusEnc.PlayerHPCheck = _player[0];
-            //    statusEnc.FinalEncounterMonster(0);
-            //}
-            //else if (this.status == 1)
-            //{
-            //    statusEnc.FinalEncounterMonster(1);
-            //}
-            //else if ( this.status == -1 && statusEnc.PlayerHPCheck <= 0 )
-            //{
-            //    _player[0] = statusEnc.PlayerHPCheck;
-            //    goto PlayerDeath;
-            //}
-            //else 
-            //{ 
-            //    goto EndBattle; 
-            //}
-            #endregion
-
             void TurnAction()
             {
                 PlayerAct:
@@ -123,44 +101,6 @@ namespace JogoTurnBased
 
             }
 
-            #region TurnAction
-            //ActionClass action = new();
-
-            //PlayerAct:
-            //string act = Console.ReadLine();
-            //action.GetAction(act);
-
-            //switch (action.ReturnAction())
-            //{
-            //    case "atacar":
-            //        statusEnc.MoveAttack(_player[1], _name);
-            //        statusEnc.MonsterAttack(statusEnc.PlayerHPCheck, _player[2], _name);
-            //        NewRound(statusEnc.DeathStatus());
-            //        goto NewTurn;
-
-            //    case "curar":
-            //        statusEnc.PlayerHPCheck = statusEnc.MoveHeal(_player[3], statusEnc.PlayerHPCheck, _player[0]);
-            //        statusEnc.MonsterAttack(statusEnc.PlayerHPCheck, _player[2], _name);
-            //        NewRound(statusEnc.DeathStatus());
-            //        goto NewTurn;
-
-            //    case "esperar":
-            //        Console.WriteLine("Você começou a fazer um formato de T com o corpo");
-            //        statusEnc.MonsterAttack(statusEnc.PlayerHPCheck, _player[2], _name);
-            //        NewRound(statusEnc.DeathStatus());
-            //        goto NewTurn;
-
-            //    case "quit":
-            //        Environment.Exit(1);
-            //        break;
-
-            //    default:
-            //        Console.WriteLine("Comando inválido, tente novamente!");
-            //        goto PlayerAct;
-            //}
-            //// END
-            #endregion
-
             void EndBattle()
             {
                 if (statusEnc.PlayerHPCheck > 0) // Player vivo
@@ -175,23 +115,9 @@ namespace JogoTurnBased
                     Console.WriteLine("Batalha finalizada.");
                 }
             }
-
-            #region End Battle Old 
-            //EndBattle:
-            //MonsterEXP(statusEnc.ReturnMonsterExp());
-            //_player[0] = statusEnc.PlayerHPCheck;
-            //PlayerDeath:
-            //Console.WriteLine("Batalha finalizada.");
-            // END
-            #endregion
         }
 
         public int mExp { get; private set; }
-
-        //private void MonsterEXP(int getExp)
-        //{
-        //    mExp = getExp;
-        //}
 
         public void NewRound(int status)
         {
