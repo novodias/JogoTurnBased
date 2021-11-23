@@ -66,29 +66,42 @@ namespace JogoTurnBased
 
             void TurnAction()
             {
-                PlayerAct:
+                void Attack()
+                {
+                    statusEnc.MoveAttack(_player[1], _name);
+                    statusEnc.MonsterAttack(statusEnc.PlayerHPCheck, _player[2], _name);
+                    NewRound(statusEnc.DeathStatus());
+                    ChangeStatusBattle();
+                }
+                void Heal()
+                {
+                    statusEnc.PlayerHPCheck = statusEnc.MoveHeal(_player[3], statusEnc.PlayerHPCheck, _player[6]);
+                    statusEnc.MonsterAttack(statusEnc.PlayerHPCheck, _player[2], _name);
+                    NewRound(statusEnc.DeathStatus());
+                    ChangeStatusBattle();
+                }
+                void Wait()
+                {
+                    Console.WriteLine("Você começou a fazer um formato de T com o corpo");
+                    statusEnc.MonsterAttack(statusEnc.PlayerHPCheck, _player[2], _name);
+                    NewRound(statusEnc.DeathStatus());
+                    ChangeStatusBattle();
+                }
+
+                //PlayerAct:
                 string act = Console.ReadLine();
                 switch (act)
                 {
                     case "atacar":
-                        statusEnc.MoveAttack(_player[1], _name);
-                        statusEnc.MonsterAttack(statusEnc.PlayerHPCheck, _player[2], _name);
-                        NewRound(statusEnc.DeathStatus());
-                        ChangeStatusBattle();
+                        Attack();
                         break;
 
                     case "curar":
-                        statusEnc.PlayerHPCheck = statusEnc.MoveHeal(_player[3], statusEnc.PlayerHPCheck, _player[6]);
-                        statusEnc.MonsterAttack(statusEnc.PlayerHPCheck, _player[2], _name);
-                        NewRound(statusEnc.DeathStatus());
-                        ChangeStatusBattle();
+                        Heal();
                         break;
 
                     case "esperar":
-                        Console.WriteLine("Você começou a fazer um formato de T com o corpo");
-                        statusEnc.MonsterAttack(statusEnc.PlayerHPCheck, _player[2], _name);
-                        NewRound(statusEnc.DeathStatus());
-                        ChangeStatusBattle();
+                        Wait();
                         break;
 
                     case "quit":
@@ -97,7 +110,8 @@ namespace JogoTurnBased
 
                     default:
                         Console.WriteLine("Comando inválido, tente novamente!");
-                        goto PlayerAct;
+                        TurnAction();
+                        break;
                 }
 
             }
