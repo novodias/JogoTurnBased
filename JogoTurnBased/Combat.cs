@@ -109,7 +109,7 @@ namespace JogoTurnBased
                         break;
 
                     default:
-                        Console.WriteLine("Comando inválido, tente novamente!");
+                        Console.WriteLine(MessageClass.SendMessage("InvalidCommand", "combat"));
                         TurnAction();
                         break;
                 }
@@ -122,12 +122,12 @@ namespace JogoTurnBased
                 {
                     mExp = statusEnc.ReturnMonsterExp();
                     _player[0] = statusEnc.PlayerHPCheck;
-                    Console.WriteLine("Você matou o monstro!");
+                    Console.WriteLine(MessageClass.SendMessage("EndBattle01", "combat"));
                 }
                 else
                 {
                     _player[0] = statusEnc.PlayerHPCheck;
-                    Console.WriteLine("Batalha finalizada.");
+                    Console.WriteLine(MessageClass.SendMessage("EndBattle02", "combat"));
                 }
             }
         }
@@ -139,7 +139,7 @@ namespace JogoTurnBased
             switch (status)
             {
                 case 1:
-                    Console.WriteLine("Deseja tentar novamente? (y/n)");
+                    Console.WriteLine(MessageClass.SendMessage("NewTry", "combat"));
                     char TryAgain = Console.ReadKey().KeyChar;
                     if (TryAgain == 'n')
                     {

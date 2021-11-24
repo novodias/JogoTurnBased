@@ -23,23 +23,15 @@ namespace JogoTurnBased
             switch (cmmdoption)
             {
                 case "explore":
-                    Console.WriteLine
-                        ("Digite explorar para continuar\n" +
-                        "Digite quit para sair do jogo");
+                    Console.WriteLine(MessageClass.SendMessage("ExploreCmmds", "cmmds"));
                     break;
 
                 case "combat":
-                    Console.WriteLine
-                        ("Digite atacar para dar dano no monstro.\n" +
-                        "Digite esperar para pular o turno.\n" +
-                        "Digite curar para si curar.\n" +
-                        "Digite quit para sair do jogo.");
+                    Console.WriteLine(MessageClass.SendMessage("CombatCmmds", "cmmds"));
                     break;
 
                 case "begin":
-                    Console.WriteLine
-                        ("Digite andar para si aventurar!\n" +
-                        "Digite quit para sair.");
+                    Console.WriteLine(MessageClass.SendMessage("BeginCmmds", "cmmds"));
                     break;
             }
         }

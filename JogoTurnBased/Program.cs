@@ -12,6 +12,8 @@ namespace JogoTurnBased
         {
             Console.WriteLine("JOGO TURN BASED");
 
+            MessageClass.SelectLanguage();
+
             Start:
             PlayerStatsName playerName = new();
             Player playerClient = new();

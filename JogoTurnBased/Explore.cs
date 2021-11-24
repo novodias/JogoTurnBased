@@ -10,21 +10,23 @@ namespace JogoTurnBased
     {
         private int[] _playerStats { get; set; }
         private string _name { get; set; }
-        string MessageDungeonFound = "Você encontrou uma dungeon!";
-        string MessageDungeonExplore = "Explorando a dungeon...";
+        //string MessageDungeonFound = "Você encontrou uma dungeon!";
+        //string MessageDungeonExplore = "Explorando a dungeon...";
         Experience exp = new();
         Random random = new();
         public void FoundDungeon(string name, int[] getstats)
         {
             _name = name;
             _playerStats = getstats;
-            Console.WriteLine(MessageDungeonFound);
+            Console.WriteLine(MessageClass.SendMessage("MesDungeonFound", "explore"));
+            //Console.WriteLine(MessageDungeonFound);
             ExploreDungeon(_name, _playerStats);
         }
 
         private int[] ExploreDungeon(string name, int[] PlayerStats)
         {
-            Console.WriteLine(MessageDungeonExplore);
+            Console.WriteLine(MessageClass.SendMessage("MesDungeonExplore", "explore"));
+            //Console.WriteLine(MessageDungeonExplore);
             int RandomFind = random.Next(0, 101);
             if ( RandomFind >= 1 && RandomFind <= 50 )
             {
@@ -63,7 +65,7 @@ namespace JogoTurnBased
             else
             {
                 // Loop
-                return ContinueDungeon(name, PlayerStats, "Você encontrou nada.");
+                return ContinueDungeon(name, PlayerStats, MessageClass.SendMessage("ConDungeonFoundNothing", "explore"));
             }
         }
 
@@ -102,11 +104,11 @@ namespace JogoTurnBased
                 {
                     int resthp = _playerStats[6] - _playerStats[0];
                     _playerStats[0] += resthp;
-                    Console.WriteLine($"Você achou uma poção de HP! bebeu, e recuperou {resthp} de HP");
+                    Console.WriteLine(MessageClass.SendMessage("HpPotionFound01", "explore"), resthp);
                 }
                 else
                 {
-                    Console.WriteLine("Você achou uma poção de HP! bebeu, e recuperou 5 de HP");
+                    Console.WriteLine(MessageClass.SendMessage("HpPotionFound02", "explore"));
                     _playerStats[0] += 5;
                 }
             }
@@ -122,9 +124,9 @@ namespace JogoTurnBased
             int exp;
             string item;
 
-            void BigChungus() { exp = 2;    item = "Big Chungus";           }
-            void Thanos() {     exp = 5;    item = "Thanos em T pose";      }
-            void Amogus() {     exp = 10;   item = "Sus Amogus dourado";    }
+            void BigChungus() { exp = 2;    item = MessageClass.SendMessage("BigChungus", "explore");           }
+            void Thanos() {     exp = 5;    item = MessageClass.SendMessage("ThanosT", "explore");      }
+            void Amogus() {     exp = 10;   item = MessageClass.SendMessage("SusAmogusD", "explore");    }
 
             if( GetRandomExp >= 1 && GetRandomExp <= 5 )
             {
@@ -139,7 +141,8 @@ namespace JogoTurnBased
                 Amogus(); // retorna 10
             }
 
-            Console.WriteLine($"Você encontrou um {item}! e ganhou +{exp} de exp");
+            Console.WriteLine(MessageClass.SendMessage("ItemAndExp", "explore"), item, exp);
+            //Console.WriteLine($"Você encontrou um {item}! e ganhou +{exp} de exp");
             return _playerStats[4] += exp;
         }
         #endregion
