@@ -1,8 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace JogoTurnBased
 {
@@ -61,6 +57,7 @@ namespace JogoTurnBased
                 case "DANO":
                 case "Dano":
                 case "dano":
+                case "damage":
                     playerStats[1] += randomStat.Next(1, 6);
                     Console.WriteLine(MessageClass.SendMessage("Attack", "exp"), playerStats[1]);
                     return playerStats;
@@ -68,6 +65,7 @@ namespace JogoTurnBased
                 case "ESQUIVA":
                 case "Esquiva":
                 case "esquiva":
+                case "dodge":
                     playerStats[2] += randomStat.Next(1, 6);
                     Console.WriteLine(MessageClass.SendMessage("Dodge", "exp"), playerStats[2]);
                     return playerStats;
@@ -75,6 +73,7 @@ namespace JogoTurnBased
                 case "CURA":
                 case "Cura":
                 case "cura":
+                case "heal":
                     playerStats[3] += randomStat.Next(1, 6);
                     Console.WriteLine(MessageClass.SendMessage("Heal", "exp"), playerStats[3]);
                     return playerStats;

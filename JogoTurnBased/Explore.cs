@@ -1,8 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace JogoTurnBased
 {
@@ -10,8 +6,6 @@ namespace JogoTurnBased
     {
         private int[] _playerStats { get; set; }
         private string _name { get; set; }
-        //string MessageDungeonFound = "Você encontrou uma dungeon!";
-        //string MessageDungeonExplore = "Explorando a dungeon...";
         Experience exp = new();
         Random random = new();
         public void FoundDungeon(string name, int[] getstats)
@@ -19,14 +13,12 @@ namespace JogoTurnBased
             _name = name;
             _playerStats = getstats;
             Console.WriteLine(MessageClass.SendMessage("MesDungeonFound", "explore"));
-            //Console.WriteLine(MessageDungeonFound);
             ExploreDungeon(_name, _playerStats);
         }
 
         private int[] ExploreDungeon(string name, int[] PlayerStats)
         {
             Console.WriteLine(MessageClass.SendMessage("MesDungeonExplore", "explore"));
-            //Console.WriteLine(MessageDungeonExplore);
             int RandomFind = random.Next(0, 101);
             if ( RandomFind >= 1 && RandomFind <= 50 )
             {
@@ -142,7 +134,6 @@ namespace JogoTurnBased
             }
 
             Console.WriteLine(MessageClass.SendMessage("ItemAndExp", "explore"), item, exp);
-            //Console.WriteLine($"Você encontrou um {item}! e ganhou +{exp} de exp");
             return _playerStats[4] += exp;
         }
         #endregion

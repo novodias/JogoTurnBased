@@ -1,8 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace JogoTurnBased
 {
@@ -93,14 +89,17 @@ namespace JogoTurnBased
                 switch (act)
                 {
                     case "atacar":
+                    case "attack":
                         Attack();
                         break;
 
                     case "curar":
+                    case "heal":
                         Heal();
                         break;
 
                     case "esperar":
+                    case "wait":
                         Wait();
                         break;
 
