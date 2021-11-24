@@ -74,8 +74,10 @@ namespace JogoTurnBased
 
             #region Message.cs
             new MessageTxt(){ Message = String.Format(""), Name = "Hello", Type = "message" },
-            new MessageTxt(){ Message = String.Format(""), Name = "Walk", Type = "message" }
+            new MessageTxt(){ Message = String.Format(""), Name = "Walk", Type = "message" },
             #endregion
+
+            new MessageTxt(){ Message = "", Name = "Tpose", Type = "combat" }
         };
     }
 }

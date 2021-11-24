@@ -78,7 +78,7 @@ namespace JogoTurnBased
                 }
                 void Wait()
                 {
-                    Console.WriteLine("Você começou a fazer um formato de T com o corpo");
+                    Console.WriteLine(MessageClass.SendMessage("Tpose", "combat"));
                     statusEnc.MonsterAttack(statusEnc.PlayerHPCheck, _player[2], _name);
                     NewRound(statusEnc.DeathStatus());
                     ChangeStatusBattle();
@@ -90,16 +90,21 @@ namespace JogoTurnBased
                 {
                     case "atacar":
                     case "attack":
+                    case "a":
                         Attack();
                         break;
 
                     case "curar":
                     case "heal":
+                    case "h":
+                    case "c":
                         Heal();
                         break;
 
                     case "esperar":
+                    case "e":
                     case "wait":
+                    case "w":
                         Wait();
                         break;
 
