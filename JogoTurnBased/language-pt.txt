@@ -1,0 +1,38 @@
+Voce encontrou uma dungeon!
+Explorando a dungeon...
+Voce encontrou nada.
+Big Chungus
+Thanos em T pose
+Sus Amogus dourado
+Voce achou uma poção de HP! bebeu, e recuperou {0} de HP
+Voce achou uma poção de HP! bebeu, e recuperou 5 de HP
+Voce encontrou um {0}! e ganhou +{1} de exp
+Voce upou o HP máximo, e aumentou para {0}
+Voce upou Dano, e aumentou para {0}
+Voce upou Esquiva, e aumentou para {0}
+Voce upou Cura, e aumentou para {0}
+Digite corretamente o status!
+Você upou para o nivel: {0}, e agora pode upar um stat!
+Escolha um dos status para upar: HP maximo: {0}, Dano: {1}, Esquiva: {2} e Cura: {3}.
+Sua experiencia ate o proximo nivel: {0}/{1}
+Opcoes disponiveis: explorar e quit
+Opcoes disponiveis: atacar, curar, esperar e quit
+Opcoes disponiveis: andar e quit
+Comando invalido, tente novamente!
+Batalha finalizada
+Batalha finalizada, voce morreu.
+Deseja tentar novamente? (y/n)
+{0} acertou um dano crítico: {1}
+{0} deu: 1
+{0} deu: {1}
+{0} desviou do ataque!
+Voce curou: {0}
+Voce falhou a cura
+Seu HP: {0}
+HP do {0}: {1}
+O que pretende fazer?
+Voce morreu!
+Voce derrotou o monstro
+Insira o seu nome: 
+Ola {0}, seja bem-vindo ao jogo Turn Based, se prepare para lutar!
+{0} começou a andar...

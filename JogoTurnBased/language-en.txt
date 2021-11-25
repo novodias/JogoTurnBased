@@ -1,0 +1,38 @@
+You found a dungeon!
+Exploring the dungeon...
+You found nothing.
+Big Chungus
+Thanos in T pose
+Golden Sus Amogus
+You found a hp potion! Drank, and recovered {0} HP
+You found a hp potion! Drank, and recovered 5 HP
+You found a {0}! and won +{1} exp
+You increased your max HP to {0}
+You increased your Damage to {0}
+You increased your Dodge to {0}
+You increased your Heal to {0}
+Type correctly the command!
+You increased your level to: {0}, and can increase a stat!
+Choose one of the stats to increase: Max HP: {0}, Damage: {1}, Dodge: {2} and Heal: {3}.
+Your experience until your next level: {0}/{1}
+Available options: explore and quit.
+Available options: attack, heal, wait and quit
+Available options: walk and quit
+Type correctly the command!
+The battle is over.
+The battle is over, You died.
+Would you like to try again? (y/n)
+{0} hit a critical damage: {1}
+{0} hit: 1
+{0} hit: {1}
+{0} Dodged the attack!
+You healed: {0}
+You failed the heal!
+Your HP: {0}
+{0} HP: {1}
+What will you do?
+You died!
+You killed the monster.
+Insert your name: 
+Hi {0}, welcome to the Turn Based game, prepare to fight!
+{0} began to walk...

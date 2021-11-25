@@ -1,8 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace JogoTurnBased
 {
@@ -55,32 +51,35 @@ namespace JogoTurnBased
                 case "Hp":
                 case "hp":
                     playerStats[6] += randomStat.Next(1, 16);
-                    Console.WriteLine($"Você upou o HP máximo, e aumentou para {playerStats[6]}");
+                    Console.WriteLine(MessageClass.SendMessage("HpMax", "exp"), playerStats[6]);
                     return playerStats;
 
                 case "DANO":
                 case "Dano":
                 case "dano":
+                case "damage":
                     playerStats[1] += randomStat.Next(1, 6);
-                    Console.WriteLine($"Você upou Dano, e aumentou para {playerStats[1]}");
+                    Console.WriteLine(MessageClass.SendMessage("Attack", "exp"), playerStats[1]);
                     return playerStats;
 
                 case "ESQUIVA":
                 case "Esquiva":
                 case "esquiva":
+                case "dodge":
                     playerStats[2] += randomStat.Next(1, 6);
-                    Console.WriteLine($"Você upou Esquiva, e aumentou para {playerStats[2]}");
+                    Console.WriteLine(MessageClass.SendMessage("Dodge", "exp"), playerStats[2]);
                     return playerStats;
 
                 case "CURA":
                 case "Cura":
                 case "cura":
+                case "heal":
                     playerStats[3] += randomStat.Next(1, 6);
-                    Console.WriteLine($"Você upou Cura, e aumentou para {playerStats[3]}");
+                    Console.WriteLine(MessageClass.SendMessage("Heal", "exp"), playerStats[3]);
                     return playerStats;
 
                 default:
-                    Console.WriteLine("Digite corretamente o status!");
+                    Console.WriteLine(MessageClass.SendMessage("NewTry", "exp"));
                     stats = Console.ReadLine();
                     goto NewTry;
             }
@@ -90,23 +89,19 @@ namespace JogoTurnBased
         {
             if(CheckLevelUp(PlayerStats[4], PlayerStats[5]) == true)
             {
-                Console.WriteLine($"Você upou para o nível: {Points}, e agora pode upar um stat!");
-                Console.WriteLine($"Escolha um dos status para upar: " +
-                    $"HP máximo: {PlayerStats[6]}, " +
-                    $"Dano: {PlayerStats[1]}, " +
-                    $"Esquiva: {PlayerStats[2]} e " +
-                    $"Cura: {PlayerStats[3]}.");
+                Console.WriteLine(MessageClass.SendMessage("LevelUp", "exp"), Points);
+                Console.WriteLine(MessageClass.SendMessage("Choose", "exp"), PlayerStats[6], PlayerStats[1], PlayerStats[2], PlayerStats[3]);
 
                 string ChooseStats = Console.ReadLine();
                 ChooseStats.ToLower();
 
                 PlayerStats[5] += PlayerStats[5];
 
-                Console.WriteLine($"Sua experiência até o próximo nível: {PlayerStats[4]}/{PlayerStats[5]}");
+                Console.WriteLine(MessageClass.SendMessage("ExpTotal", "exp"), PlayerStats[4], PlayerStats[5]);
 
                 return LevelUpStats(ChooseStats, PlayerStats); // retorna os stats do player após upar.
             }
-            Console.WriteLine($"Sua experiência até o próximo nível: {PlayerStats[4]}/{PlayerStats[5]}");
+            Console.WriteLine(MessageClass.SendMessage("ExpTotal", "exp"), PlayerStats[4], PlayerStats[5]);
             return PlayerStats; // retorna os stats originais do player.
         }
     }

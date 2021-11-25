@@ -1,8 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace JogoTurnBased
 {
@@ -11,6 +7,8 @@ namespace JogoTurnBased
         static void Main(string[] args)
         {
             Console.WriteLine("JOGO TURN BASED");
+
+            MessageClass.SelectLanguage();
 
             Start:
             PlayerStatsName playerName = new();

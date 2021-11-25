@@ -1,8 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace JogoTurnBased
 {
@@ -82,7 +78,7 @@ namespace JogoTurnBased
                 }
                 void Wait()
                 {
-                    Console.WriteLine("Você começou a fazer um formato de T com o corpo");
+                    Console.WriteLine(MessageClass.SendMessage("Tpose", "combat"));
                     statusEnc.MonsterAttack(statusEnc.PlayerHPCheck, _player[2], _name);
                     NewRound(statusEnc.DeathStatus());
                     ChangeStatusBattle();
@@ -93,14 +89,22 @@ namespace JogoTurnBased
                 switch (act)
                 {
                     case "atacar":
+                    case "attack":
+                    case "a":
                         Attack();
                         break;
 
                     case "curar":
+                    case "heal":
+                    case "h":
+                    case "c":
                         Heal();
                         break;
 
                     case "esperar":
+                    case "e":
+                    case "wait":
+                    case "w":
                         Wait();
                         break;
 
@@ -109,7 +113,7 @@ namespace JogoTurnBased
                         break;
 
                     default:
-                        Console.WriteLine("Comando inválido, tente novamente!");
+                        Console.WriteLine(MessageClass.SendMessage("InvalidCommand", "combat"));
                         TurnAction();
                         break;
                 }
@@ -122,12 +126,12 @@ namespace JogoTurnBased
                 {
                     mExp = statusEnc.ReturnMonsterExp();
                     _player[0] = statusEnc.PlayerHPCheck;
-                    Console.WriteLine("Você matou o monstro!");
+                    Console.WriteLine(MessageClass.SendMessage("EndBattle01", "combat"));
                 }
                 else
                 {
                     _player[0] = statusEnc.PlayerHPCheck;
-                    Console.WriteLine("Batalha finalizada.");
+                    Console.WriteLine(MessageClass.SendMessage("EndBattle02", "combat"));
                 }
             }
         }
@@ -139,7 +143,7 @@ namespace JogoTurnBased
             switch (status)
             {
                 case 1:
-                    Console.WriteLine("Deseja tentar novamente? (y/n)");
+                    Console.WriteLine(MessageClass.SendMessage("NewTry", "combat"));
                     char TryAgain = Console.ReadKey().KeyChar;
                     if (TryAgain == 'n')
                     {

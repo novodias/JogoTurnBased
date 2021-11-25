@@ -1,5 +1,4 @@
 using System;
-using System.Collections.Generic;
 
 namespace JogoTurnBased
 {
@@ -53,21 +52,21 @@ namespace JogoTurnBased
         }
         public void EncounterMonster(int PlayerHPCheck)
         {
-            Console.WriteLine("Seu HP: " + PlayerHPCheck);
-            Console.WriteLine("HP do " + (string)MonsterInfo.InfoMonsterArray("name") + ": " + MonstersHP);
-            Console.WriteLine("O que pretende fazer?");
-            Cmmds.List("combat");
+            Console.WriteLine(MessageClass.SendMessage("PlayerHP", "encounter"), PlayerHPCheck);
+            Console.WriteLine(MessageClass.SendMessage("MonsterHP", "encounter"), (string)MonsterInfo.InfoMonsterArray("name"), MonstersHP);
+            Console.WriteLine(MessageClass.SendMessage("Todo", "encounter"));
+            Console.WriteLine(MessageClass.SendMessage("CombatCmmds", "cmmds"));
         }
         public int DeathStatus()
         {
             if(CheckDeath() == 1)
             {
-                Console.WriteLine("Você morreu!");
+                Console.WriteLine(MessageClass.SendMessage("YouDied", "encounter"));
                 return 1;
             }
             else if(CheckDeath() == 2)
             {
-                Console.WriteLine("Você derrotou o monstro!");
+                Console.WriteLine(MessageClass.SendMessage("MonsterDead", "encounter"));
                 return 2;
             }
             else return 3;

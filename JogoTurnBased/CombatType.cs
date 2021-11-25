@@ -40,7 +40,7 @@ namespace JogoTurnBased
             if(CriticalDMG == Attack)
             {
                 int DamageInfo = CriticalDMG * 2;
-                Console.WriteLine(infoAttacker + " acertou um dano crítico: " + DamageInfo);
+                Console.WriteLine(MessageClass.SendMessage("CriticDamage", "combattype"), infoAttacker, DamageInfo);
                 return DamageInfo;
             }
             else 
@@ -48,10 +48,10 @@ namespace JogoTurnBased
                 int DamageInfo = RandomMiss.Next(Attack - 4, Attack + 1);
                 if (DamageInfo <= 0)
                 {
-                    Console.WriteLine(infoAttacker + " deu: 1");
+                    Console.WriteLine(MessageClass.SendMessage("ReturnOneDamage", "combattype"),infoAttacker);
                     return 1;
                 }
-                Console.WriteLine(infoAttacker + " deu: " + DamageInfo);
+                Console.WriteLine(MessageClass.SendMessage("Damage", "combattype"),infoAttacker, DamageInfo);
                 return DamageInfo;
             }
         }
@@ -62,7 +62,7 @@ namespace JogoTurnBased
             if(ChanceToDodge <= infoDodge)
             {
                 Attack = 0;
-                Console.WriteLine(infoAttacker + " desviou do ataque!");
+                Console.WriteLine(MessageClass.SendMessage("Dodge", "combattype"), infoAttacker);
                 return Attack;
             }
             return Attack;
@@ -84,16 +84,16 @@ namespace JogoTurnBased
                 if (cura > MaxHP)
                 {
                     int HPcure = MaxHP - HP;
-                    Console.WriteLine($"Você curou: {HPcure}");
+                    Console.WriteLine(MessageClass.SendMessage("Heal", "combattype"),HPcure);
                     return HP + HPcure;
                 }
                 else
                 {
-                    Console.WriteLine($"Você curou: {HealStat}");
+                    Console.WriteLine(MessageClass.SendMessage("Heal", "combattype"), HealStat);
                     return HealStat + HP;
                 }
             }
-            Console.WriteLine("Você falhou a cura!");
+            Console.WriteLine(MessageClass.SendMessage("FailedHeal", "combattype"));
             return HP;
         }
 
