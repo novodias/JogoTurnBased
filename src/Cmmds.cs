@@ -7,6 +7,7 @@ namespace JogoTurnBased
         public static string InsertText()
         {
             string Text = Console.ReadLine();
+            Text.ToLower();
             if (Text == "quit")
             {
                 Environment.Exit(1);

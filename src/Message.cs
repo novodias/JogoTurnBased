@@ -32,8 +32,13 @@ namespace JogoTurnBased
             {
                 return _languageMessages = File.ReadAllLines("language-pt.txt");
             }
-            else
+            else if (_language == "en")
             {
+                return _languageMessages = File.ReadAllLines("language-en.txt");
+            }
+            else 
+            {
+                Console.WriteLine("Unspecified language, selecting english.");
                 return _languageMessages = File.ReadAllLines("language-en.txt");
             }
         }

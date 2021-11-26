@@ -86,6 +86,7 @@ namespace JogoTurnBased
 
                 //PlayerAct:
                 string act = Console.ReadLine();
+                act.ToLower();
                 switch (act)
                 {
                     case "atacar":

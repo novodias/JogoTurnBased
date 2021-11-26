@@ -45,6 +45,7 @@ namespace JogoTurnBased
         {
             Random randomStat = new();
             NewTry:
+            stats.ToLower();
             switch (stats)
             {
                 case "HP":
